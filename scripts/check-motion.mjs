@@ -23,7 +23,7 @@ for (let frame = -1; frame <= 200; frame++) {
 assert.ok(baselineTrough, "The original negative trough is restored");
 
 let idleRange = 0;
-for (let lane = 0; lane < 5; lane++) {
+for (let lane = 0; lane < 6; lane++) {
   for (let row = 0; row < 32; row++) {
     for (let frame = 0; frame < 60 * 13; frame++) {
       const a = idleWave(row, lane, frame / 60);
@@ -52,7 +52,7 @@ assert.ok(peak(24.8) < peak(24.2) - 8, "Second crest must return across rows");
 let maxFrameDelta = 0;
 for (let frame = 550; frame < 800; frame++) {
   for (let row = 0; row < 32; row++)
-    for (let lane = 0; lane < 5; lane++) {
+    for (let lane = 0; lane < 6; lane++) {
       const a = archiveWave(row, lane, frame / 25);
       const b = archiveWave(row, lane, (frame + 1) / 25);
       assert.ok(Number.isFinite(a));

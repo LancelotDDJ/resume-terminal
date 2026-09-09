@@ -17,11 +17,12 @@ import {
   damp,
 } from "../src/motion.ts";
 
-assert.equal(records.length, 40);
+assert.equal(records.length, 15);
 const slots = new Set();
 for (let lane = 0; lane < archiveColumns.length; lane++) {
   const files = columnFiles(lane);
-  assert.equal(files.length, 8, "Every column has eight readable files");
+  const expected = records.filter((r) => r.category === archiveColumns[lane]).length;
+  assert.equal(files.length, expected, "Every column reads exactly its category files");
   for (const index of files) {
     const location = fileLocation(index);
     assert.equal(location.lane, lane);
@@ -34,8 +35,8 @@ for (let lane = 0; lane < archiveColumns.length; lane++) {
     assert.ok(new URL(record.source).protocol === "https:");
   }
 }
-assert.equal(slots.size, 40, "No two documents occupy the same slot");
-const crests = Array.from({ length: 5 }, (_, lane) =>
+assert.equal(slots.size, 15, "No two documents occupy the same slot");
+const crests = Array.from({ length: archiveColumns.length }, (_, lane) =>
   Math.max(
     ...Array.from({ length: 32 }, (_, row) => cinematicField(row, lane, 25.4)),
   ),
@@ -49,7 +50,7 @@ assert.ok(columnStrength(2, 2) > columnStrength(1, 2));
 let maxDelta = 0;
 for (let f = 750; f < 786; f++) {
   for (let row = 0; row < 32; row++)
-    for (let lane = 0; lane < 5; lane++) {
+    for (let lane = 0; lane < archiveColumns.length; lane++) {
       maxDelta = Math.max(
         maxDelta,
         Math.abs(

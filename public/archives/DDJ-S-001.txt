@@ -1,0 +1,22 @@
+﻿DONG DEJIA · PERSONAL ARCHIVE
+FILE S-001 / 相关技能
+SKILLS MATRIX
+
+角色：个人档案 · 技能
+时期：持续更新
+技术栈：Python / Go / Kotlin / React / PyTorch / Agent
+访问范围：PUBLIC
+
+编程语言、前后端与桌面移动开发框架、机器学习框架与算法、AI 工具链与 Agent 开发工程，以及英语（IELTS 6.5）与德语（A1）语言能力。
+
+详细记录
+1. 编程语言：Python / Go / C / Kotlin / R / SQL / Shell / JavaScript / HTML / CSS。
+2. 前端与后端开发：Gin / FastAPI / Vue 3 / React / Tkinter。
+3. 桌面端与移动端开发：Electron / Capacitor / Android。
+4. 机器学习框架与算法：PyTorch / TensorFlow / CNN / ResNet / MobileNetV2 / Transformer / Attention。
+5. AI 工具链：Claude Code / Codex / OpenCode / WorkBuddy / Kimi Code——熟练运用 AI 工具提效，坚持独立判断。
+6. Agent 开发工程：Prompt Engineering / Context Engineering / Harness Engineering / RAG。
+7. 语言能力：英语 IELTS 6.5（阅读单项 8.0）；德语 Goethe-Zertifikat A1。
+
+相关链接：https://github.com/LancelotDDJ
+本档案内容来自董德嘉本人真实简历。

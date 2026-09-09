@@ -1,5 +1,5 @@
 ﻿DONG DEJIA · PERSONAL ARCHIVE
-FILE X-003 / 水果购买建议分析 App
+FILE P-004 / 水果购买建议分析 App
 FRUIT ADVISOR
 
 角色：独立开发 · 移动端 + 深度学习
@@ -12,8 +12,8 @@ FRUIT ADVISOR
 详细记录
 1. 模型训练：PyTorch 迁移学习训练 MobileNetV2 水果分类模型，导出 ONNX 并适配手机客户端。
 2. 客户端搭建：集成 ONNX Runtime 实现本地离线推理，结合自研颜色分析引擎多维度评估水果品质。
-3. 数据分析与建议生成：CameraX 照片采集流程 + Jetpack Compose 完整 UI；自研 HSV 颜色空间分析引擎对成熟度、外观品质、时令匹配进行多维评估。
-4. 项目成果：支持 197 种水果离线识别，建议含成熟度、外观、时令、风味预估四维度；推理完全本地化，单次识别耗时小于 1 秒。
+3. 数据分析与建议生成：CameraX 照片采集流程 + Jetpack Compose 完整 UI；自研 HSV 颜色空间分析引擎对成熟度、外观品质、时令匹配进行多维度综合评估，生成购买建议。
+4. 项目成果：支持 197 种水果的离线识别，综合建议含成熟度、外观品质、时令匹配、风味预估四个维度；模型推理完全本地化，单次识别耗时 <1 秒。
 
 相关链接：https://github.com/LancelotDDJ/FruitAdvisor
 本档案内容来自董德嘉本人真实简历。

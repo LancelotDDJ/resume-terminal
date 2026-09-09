@@ -1,9 +1,136 @@
 {
-  "categories": ["项目经历", "实习经历", "科研论文", "教育背景", "个人档案"],
-  "columns": ["项目经历", "实习经历", "科研论文", "教育背景", "个人档案"],
+  "categories": ["个人简介", "教育经历", "实习经历", "项目经历", "科研经历", "相关技能"],
+  "columns": ["个人简介", "教育经历", "实习经历", "项目经历", "科研经历", "相关技能"],
   "records": [
     {
-      "id": "X-001",
+      "id": "O-001",
+      "title": "关于董德嘉",
+      "en": "ABOUT DONG DEJIA",
+      "department": "个人档案",
+      "category": "个人简介",
+      "date": "现居北京",
+      "lead": "13553039800 / LancelotDJ@outlook.com",
+      "clearance": "FEATURED",
+      "abstract": "董德嘉，24 岁，现居北京。阿德莱德大学数据科学硕士在读，专注于 AI/Agent 系统工程与数据自动化，可独立完成需求分析、架构设计、代码开发直至上线的全流程工作。",
+      "findings": [
+        "联系方式：电话 13553039800，邮箱 LancelotDJ@outlook.com。",
+        "基本情况：男，24 岁，现所在地北京。",
+        "开源主页：github.com/LancelotDDJ——Voyager、Coupang 分析、FruitAdvisor 等项目源码公开。"
+      ],
+      "source": "https://github.com/LancelotDDJ"
+    },
+    {
+      "id": "O-002",
+      "title": "自我评价",
+      "en": "SELF ASSESSMENT",
+      "department": "个人档案",
+      "category": "个人简介",
+      "date": "长期",
+      "lead": "独立判断 / 跨学科 / 全流程",
+      "clearance": "PUBLIC",
+      "abstract": "熟练运用 AI 工具、尤其擅长搭建多 Agent 系统，但坚持独立判断；数理功底与工程实操能力扎实，擅长多维度跨学科思路解决研发问题；可独立完成需求分析到上线的全流程工作。",
+      "findings": [
+        "熟练运用 AI 工具、尤其擅长搭建多 Agent 系统，但坚持独立判断，不依赖 AI 替代思考。",
+        "数理功底与工程实操能力扎实，擅长多维度跨学科思路解决研发问题。",
+        "可独立完成需求分析、架构设计、代码开发直至上线的全流程工作。"
+      ],
+      "source": "https://github.com/LancelotDDJ"
+    },
+    {
+      "id": "O-003",
+      "title": "本站说明 · 版权与致谢",
+      "en": "COLOPHON & CREDITS",
+      "department": "个人档案 · 本站",
+      "category": "个人简介",
+      "date": "2026.09",
+      "lead": "MIT / MiSans / Three.js",
+      "clearance": "PUBLIC",
+      "abstract": "本站为静态个人简历终端：键盘 ←→ 切换分类、↑↓ 翻阅档案、Enter 读取、/ 检索。界面工程基于 MIT 许可的开源项目改造，已去除全部第三方 IP 元素。",
+      "findings": [
+        "界面工程：基于 LBEILC/RhineLabUI（MIT License, Copyright (c) 2026 LBEILC）改造，保留其工程架构与动效，去除开场动画与全部《明日方舟》相关 IP 元素。",
+        "字体：MiSans（小米官方字体，保留其许可与署名）；Three.js、Rolling 等开源依赖的许可文件随站分发。",
+        "内容：全部档案内容来自董德嘉本人真实简历，按个人简介 / 教育 / 实习 / 项目 / 科研 / 技能六类组织，每类内按时间由新到旧编号。"
+      ],
+      "source": "https://github.com/LBEILC/RhineLabUI"
+    },
+    {
+      "id": "E-001",
+      "title": "阿德莱德大学 · 数据科学硕士",
+      "en": "UNIVERSITY OF ADELAIDE · MDS",
+      "department": "硕士研究生在读",
+      "category": "教育经历",
+      "date": "2024.09 - 至今",
+      "lead": "数据科学 / 机器学习",
+      "clearance": "PUBLIC",
+      "abstract": "阿德莱德大学数据科学硕士在读，学术成绩专业排名前 10%，研究方向为多智能体系统、机器学习在复杂网络中的应用、基于 Agent 的行为演化模拟。",
+      "findings": [
+        "学位信息：数据科学硕士（Master of Data Science），2024.09 入学。",
+        "学术成绩：专业排名前 10%。",
+        "研究方向：多智能体系统、机器学习在复杂网络中的应用、基于 Agent 的行为演化模拟。",
+        "主修课程：高级机器学习、高级统计学、数据挖掘、分布式系统、人工智能应用。",
+        "毕业论文：《遗忘核在信念动态系统中的作用模拟》（详见 R-001）。"
+      ],
+      "source": "https://github.com/LancelotDDJ"
+    },
+    {
+      "id": "E-002",
+      "title": "北京信息科技大学 · 物联网工程本科",
+      "en": "BISTU · IOT ENGINEERING",
+      "department": "本科",
+      "category": "教育经历",
+      "date": "2020.10 - 2024.06",
+      "lead": "物联网工程 / 传感器网络",
+      "clearance": "PUBLIC",
+      "abstract": "北京信息科技大学物联网工程本科，学术成绩专业排名前 10%，毕业设计为基于云端人工智能的先进物联网农场。",
+      "findings": [
+        "学位信息：物联网工程学士，2020.10 - 2024.06。",
+        "学术成绩：专业排名前 10%。",
+        "主修课程：传感器网络搭建、高级通信技术、数据结构与算法。",
+        "毕业设计：基于云端人工智能的先进物联网农场——ZigBee 传感器-控制器网络实时采集环境数据上传云端，专家系统分析并下发调控指令（详见 P-005）。"
+      ],
+      "source": "https://github.com/LancelotDDJ"
+    },
+    {
+      "id": "I-001",
+      "title": "汉王科技 · 研发部 AI 实习生",
+      "en": "HANVON R&D · AI INTERNSHIP",
+      "department": "汉王科技 · 研发部",
+      "category": "实习经历",
+      "date": "2026.05 - 2026.08",
+      "lead": "Agent 编排 / 多模型接入 / 内容安全 / 自动化采集",
+      "clearance": "FEATURED",
+      "abstract": "研发部 AI 实习生：负责 AI 游戏创造工坊的 AI/Agent 模块（Agent 编排、多模型接入、流式对话与内容安全），并独立交付电商信息智能采集与商家评估 Agent，两条业务线并行推进。",
+      "findings": [
+        "实习总览：负责 AI 游戏创造工坊的 AI/Agent 模块并参与前后端联调与部署；电商采集 Agent 从需求分析到设计、开发、交付独立完成。",
+        "AI 游戏创造工坊 · 平台简介：面向青少年的一站式 AI 创作平台，孩子通过自然语言对话即可生成可运行的小游戏、编写故事、创作绘画与代码，配套家长中心、好友社交与技能成长体系。",
+        "多 Agent 游戏生成流水线：设计并实现“自然语言需求 → 可运行游戏”的 Agent 编排，覆盖意图分类、需求优化、游戏生成、安全审查、内容过滤、封面生成等节点；提示词与模型参数全部 JSON 配置化，支持运行时热切换。",
+        "多模型统一接入与流式对话：统一 LLM 客户端以协议适配方式同时支持 Anthropic 与 OpenAI 兼容 API，按配置切换 DeepSeek / MiniMax / GLM；基于 SSE 实现逐字流式输出，以“请求体保存 + 失败重试 + 双游标增量读取”解决长文本传输的中断与重复，并以聊天总结 Agent 控制多轮对话成本。",
+        "AI 内容安全三重防线：安全审查、内容过滤与图片审核分层拦截；修复“孩子跳过等待动画导致未审核作品被展示”的线上漏洞，补全前后端状态校验，保障未成年人内容安全。",
+        "电商信息智能采集与商家评估 Agent：面向 3C 电商推广素材业务的售前获客需求，输入淘宝/天猫搜索页 URL 与品类关键词，自动完成采集 → 清洗分类 → 大模型企业信息查询 → 多维评估全流程，输出带客户优先级排序的交互式 HTML 报告。",
+        "五阶段采集管道与反爬攻克：基于 Playwright + asyncio 异步编排，长任务支持断点续跑与运行时暂停/继续/跳过；JS 注入伪造浏览器指纹、持久化登录态复用、骨架屏轮询感知、DOM 层级自适应爬升与 ARIA 分页定位，实现不依赖特定 CSS 选择器的鲁棒采集。",
+        "多维度商家评分模型：综合销量适配、品牌独立、地域商业化、内容需求、品类匹配、店铺体量六因素加权，输出 S~D 五级客户优先级排序，直接为商务团队提供线索筛选依据，已覆盖多个品类。"
+      ],
+      "source": "https://github.com/LancelotDDJ"
+    },
+    {
+      "id": "P-001",
+      "title": "个人简历终端网站（本站）",
+      "en": "PERSONAL ARCHIVE TERMINAL",
+      "department": "独立开发 · 本网站",
+      "category": "项目经历",
+      "date": "2026.09",
+      "lead": "TypeScript / Three.js / Vite",
+      "clearance": "PUBLIC",
+      "abstract": "以三维档案终端形态呈现的个人简历网站：六列循环档案阵列承载个人简介、教育、实习、项目、科研与技能档案，支持检索、收藏、360° 模型查看与 TXT 导出，纯静态部署。",
+      "findings": [
+        "基于开源三维终端界面工程（MIT 许可）改造：保留循环阵列、解密动效、画质分级与音频架构，去除开场动画与全部第三方 IP 元素。",
+        "内容数据与代码完全分离：全部简历内容维护在单一 JSON 数据文件中，校验与导出脚本保障一致性。",
+        "工程特性：无后端、无 API Key、纯静态构建；支持减少动态效果偏好、四档画质分级、TXT 档案导出。"
+      ],
+      "source": "https://github.com/LancelotDDJ"
+    },
+    {
+      "id": "P-002",
       "title": "Voyager 海外旅行全生命周期管理应用",
       "en": "VOYAGER · TRAVEL ASSISTANT",
       "department": "独立开发 · 双端应用",
@@ -22,7 +149,7 @@
       "source": "https://github.com/LancelotDDJ/Voyager-the-Travel-Assistant"
     },
     {
-      "id": "X-002",
+      "id": "P-003",
       "title": "跨境电商用户及舆情洞察自动化分析系统",
       "en": "COUPANG REVIEW ANALYSIS",
       "department": "独立开发 · 自动化分析系统",
@@ -34,13 +161,13 @@
       "findings": [
         "数据采集：分析平台通信机制，通过浏览器自动化绕过反爬限制，稳定获取商品全量评价数据（含评分、文本、时间戳等完整字段）。",
         "多语言 NLP 与情感建模：评分分层分析策略——负评逐条归因、中评抓转折词挖掘隐含不满、好评按有用数排序提炼卖点；提取高频关键词归纳为 5-6 类话题，计算情感倾向值，构建用户旅程情绪热力图。",
-        "竞品对比框架：双产品维度独立展示并附多维综合雷达图，覆盖总体评分、情感占比及核心属性满意度。",
-        "报告生成：Python 报告生成器输出独立交互式 HTML，关键外文内容附中文对照，无需服务端即可查看；完整流程封装为可复用工具，支持单品分析与竞品对比两种模式自动切换。"
+        "竞品对比框架：双产品维度独立展示，以视觉标识明确区分；附多维度综合雷达图，覆盖总体评分、情感占比及核心属性满意度。",
+        "报告生成与工程化：Python 报告生成器输出独立交互式 HTML，关键外文内容附中文对照，无需服务端即可查看；封装为可复用工具，支持单品分析与竞品对比两种模式自动切换。"
       ],
       "source": "https://github.com/LancelotDDJ/coupang-review-analysis"
     },
     {
-      "id": "X-003",
+      "id": "P-004",
       "title": "水果购买建议分析 App",
       "en": "FRUIT ADVISOR",
       "department": "独立开发 · 移动端 + 深度学习",
@@ -52,13 +179,31 @@
       "findings": [
         "模型训练：PyTorch 迁移学习训练 MobileNetV2 水果分类模型，导出 ONNX 并适配手机客户端。",
         "客户端搭建：集成 ONNX Runtime 实现本地离线推理，结合自研颜色分析引擎多维度评估水果品质。",
-        "数据分析与建议生成：CameraX 照片采集流程 + Jetpack Compose 完整 UI；自研 HSV 颜色空间分析引擎对成熟度、外观品质、时令匹配进行多维评估。",
-        "项目成果：支持 197 种水果离线识别，建议含成熟度、外观、时令、风味预估四维度；推理完全本地化，单次识别耗时小于 1 秒。"
+        "数据分析与建议生成：CameraX 照片采集流程 + Jetpack Compose 完整 UI；自研 HSV 颜色空间分析引擎对成熟度、外观品质、时令匹配进行多维度综合评估，生成购买建议。",
+        "项目成果：支持 197 种水果的离线识别，综合建议含成熟度、外观品质、时令匹配、风味预估四个维度；模型推理完全本地化，单次识别耗时 <1 秒。"
       ],
       "source": "https://github.com/LancelotDDJ/FruitAdvisor"
     },
     {
-      "id": "X-004",
+      "id": "P-005",
+      "title": "基于云端人工智能的先进物联网农场（本科毕设）",
+      "en": "CLOUD-AI IOT FARM",
+      "department": "本科毕业设计",
+      "category": "项目经历",
+      "date": "2024.01 - 2024.07",
+      "lead": "ZigBee / 专家系统 / 传感器网络",
+      "clearance": "PUBLIC",
+      "abstract": "面向农业场景，基于专家系统框架搭建云端 AI 驱动的物联网环境监测与自主调控系统，实现无人化精准农场管理。",
+      "findings": [
+        "农业调研：实地考察云南阿拉比卡小粒咖啡种植环境，整理并提炼适合其生长的室内关键参数。",
+        "系统实现：基于 ZigBee 构建传感器-控制器网络，实时采集环境数据上传云端，由专家系统分析并下发调控指令，自动调节农场环境。",
+        "实验验证：设计多参数实验，测试系统在温湿度变化及火灾等极端条件下的监测与响应能力。",
+        "项目成果：无人值守下实现火灾、水淹等风险实时报警；正常运行条件下，稳定精确调控小规模封闭式农场环境。"
+      ],
+      "source": "https://github.com/LancelotDDJ"
+    },
+    {
+      "id": "P-006",
       "title": "AI 智能聊天手机软件",
       "en": "AI CHAT APP",
       "department": "独立开发 · Android 应用",
@@ -75,47 +220,30 @@
       "source": "https://github.com/LancelotDDJ"
     },
     {
-      "id": "X-005",
-      "title": "基于云端人工智能的先进物联网农场（本科毕设）",
-      "en": "CLOUD-AI IOT FARM",
-      "department": "本科毕业设计",
-      "category": "项目经历",
-      "date": "2024.01 - 2024.07",
-      "lead": "ZigBee / 专家系统 / 传感器网络",
-      "clearance": "PUBLIC",
-      "abstract": "面向农业场景，基于专家系统框架搭建云端 AI 驱动的物联网环境监测与自主调控系统，实现无人化精准农场管理。",
-      "findings": [
-        "农业调研：实地考察云南阿拉比卡小粒咖啡种植环境，整理并提炼适合其生长的室内关键参数。",
-        "系统实现：基于 ZigBee 构建传感器-控制器网络，实时采集环境数据上传云端，由专家系统分析并下发调控指令，自动调节农场环境。",
-        "实验验证：设计多参数实验，测试系统在温湿度变化及火灾等极端条件下的监测与响应能力。",
-        "项目成果：无人值守下实现火灾、水淹等风险实时报警；正常运行条件下稳定精确调控小规模封闭式农场环境。"
-      ],
-      "source": "https://github.com/LancelotDDJ"
-    },
-    {
-      "id": "X-006",
+      "id": "R-001",
       "title": "遗忘核在信念动态系统中的作用模拟（研究生毕论）",
       "en": "COLLECTIVE FORGETTING IN OPINION DYNAMICS",
       "department": "硕士毕业论文",
-      "category": "项目经历",
+      "category": "科研经历",
       "date": "2024.09 - 至今",
       "lead": "DeGroot 模型 / Python / 仿真分析",
       "clearance": "OPEN SOURCE",
       "abstract": "基于 DeGroot 模型引入遗忘核参数，仿真分析个体记忆衰减对群体共识形成的影响，发现中等遗忘强度可显著缩短共识时间，且该效应在不同网络结构下稳健。",
       "findings": [
+        "研究问题：个体记忆衰减（遗忘）如何影响群体共识的形成过程。",
         "实验设计与数据生成：控制网络拓扑、遗忘强度、初始意见分布，生成多条件时序面板数据。",
         "指标构建：选取共识达成时间、意见方差衰减率、振荡幅度等指标量化遗忘核影响，搭建可复用分析框架。",
-        "统计建模：Python 清洗与聚合仿真数据，分组对比与趋势拟合揭示非线性关系。",
-        "核心发现：提炼“适度遗忘促进共识”的结论，为记忆机制与传播研究提供量化依据。"
+        "统计建模与可视化：Python 清洗与聚合仿真数据，经分组对比和趋势拟合，绘制收敛曲线与热力图，揭示遗忘强度与共识速度的非线性关系。",
+        "核心发现：中等遗忘强度可显著缩短共识时间，且该效应在不同网络结构下稳健——提炼“适度遗忘促进共识”的结论，为记忆机制与传播研究提供量化依据。"
       ],
       "source": "https://github.com/LancelotDDJ/Collective-Forgetting-Opinion-Dyn"
     },
     {
-      "id": "X-007",
+      "id": "R-002",
       "title": "血细胞图像分类系统开发",
       "en": "BLOOD CELL CLASSIFICATION",
       "department": "研究生课程研究",
-      "category": "项目经历",
+      "category": "科研经历",
       "date": "硕士研究生在读期间",
       "lead": "ResNet / PCA+SVM / PyTorch",
       "clearance": "PUBLIC",
@@ -124,572 +252,31 @@
         "数据预处理：图像清洗、归一化、标签编码；PCA 降维提取低维特征，统一实验输入。",
         "对比实验设计：固定数据划分、增强策略及随机种子，控制样本量与降维维度两组变量，保证评估公平性。",
         "模型评估：准确率、精确率、召回率、F1、混淆矩阵、ROC-AUC 全面对比，重点分析少数类识别与误判。",
-        "归因分析：ResNet 在复杂背景和细胞重叠场景表现更优；数据增强与迁移学习分别带来约 6% 和 9% 准确率提升，量化深度学习增益。"
+        "归因分析：ResNet 在复杂背景和细胞重叠场景表现更优；数据增强与迁移学习分别带来约 6% 和 9% 准确率提升，量化深度学习增益，并从特征表达能力解释原因。",
+        "成果：公开数据集上 ResNet 达 98% 准确率，显著优于 PCA+SVM 基准；形成对比分析报告，总结两类方法在医学图像任务中的适用条件，为后续项目选型提供依据。"
       ],
       "source": "https://github.com/LancelotDDJ"
     },
     {
-      "id": "X-008",
-      "title": "个人简历终端网站（本站）",
-      "en": "PERSONAL ARCHIVE TERMINAL",
-      "department": "独立开发 · 本网站",
-      "category": "项目经历",
-      "date": "2026.09",
-      "lead": "TypeScript / Three.js / Vite",
-      "clearance": "PUBLIC",
-      "abstract": "以三维档案终端形态呈现的个人简历网站：五列循环档案阵列承载项目、实习、科研、教育与个人档案，支持检索、收藏、360° 模型查看与 TXT 导出，纯静态部署。",
-      "findings": [
-        "基于开源三维终端界面工程（MIT 许可）改造：保留循环阵列、解密动效、画质分级与音频架构，去除开场动画与全部第三方 IP 元素。",
-        "内容数据与代码完全分离：全部简历内容维护在单一 JSON 数据文件中，校验与导出脚本保障一致性。",
-        "工程特性：无后端、无 API Key、纯静态构建；支持减少动态效果、四档画质预设与键盘完整操作。"
-      ],
-      "source": "https://github.com/LancelotDDJ"
-    },
-    {
-      "id": "X-009",
-      "title": "汉王科技研发部实习总览",
-      "en": "HANVON R&D INTERNSHIP OVERVIEW",
-      "department": "汉王科技 · 研发部 AI 实习生",
-      "category": "实习经历",
-      "date": "2026.05 - 2026.08",
-      "lead": "Agent 编排 / LLM 接入 / 内容安全",
-      "clearance": "FEATURED",
-      "abstract": "研发部 AI 实习生，负责 AI 游戏创造工坊的 AI/Agent 模块（Agent 编排、多模型接入、流式对话与内容安全），并独立交付电商信息智能采集与商家评估 Agent 桌面工具，参与前后端联调与部署。",
-      "findings": [
-        "AI 游戏创造工坊：面向青少年的一站式 AI 创作平台，负责 AI/Agent 模块并参与前后端联调与部署（详见 X-010 至 X-013）。",
-        "电商信息智能采集与商家评估 Agent：从需求分析到设计、开发、交付独立完成，服务售前获客场景（详见 X-014 至 X-016）。",
-        "两条业务线并行推进，覆盖 Agent 系统工程与数据自动化工程两类实践。"
-      ],
-      "source": "https://github.com/LancelotDDJ"
-    },
-    {
-      "id": "X-010",
-      "title": "AI 游戏创造工坊",
-      "en": "AI GAME CREATION WORKSHOP",
-      "department": "汉王科技 · 平台项目",
-      "category": "实习经历",
-      "date": "2026.05 - 2026.08",
-      "lead": "多 Agent / 多模型 / 内容安全",
-      "clearance": "PUBLIC",
-      "abstract": "面向青少年的一站式 AI 创作平台：孩子通过自然语言对话即可生成可运行的小游戏、编写故事、创作绘画与代码，并配套家长中心、好友社交与技能成长体系。本人主要负责 AI/Agent 模块。",
-      "findings": [
-        "负责 Agent 编排、多模型接入、流式对话与内容安全四个核心模块。",
-        "平台面向未成年人，内容安全与状态校验为最高优先级设计要求。",
-        "参与前后端联调与部署，保障生成链路端到端可用。"
-      ],
-      "source": "https://github.com/LancelotDDJ"
-    },
-    {
-      "id": "X-011",
-      "title": "多 Agent 游戏生成流水线",
-      "en": "MULTI-AGENT GAME PIPELINE",
-      "department": "汉王科技 · 核心工作",
-      "category": "实习经历",
-      "date": "2026.05 - 2026.08",
-      "lead": "Agent 编排 / JSON 配置化 / 热切换",
-      "clearance": "PUBLIC",
-      "abstract": "设计并实现“自然语言需求 → 可运行游戏”的 Agent 编排，覆盖意图分类、需求优化、游戏生成、安全审查、内容过滤、封面生成等节点。",
-      "findings": [
-        "流水线覆盖意图分类、需求优化、游戏生成、安全审查、内容过滤、封面生成等完整节点。",
-        "Agent 提示词与模型参数全部 JSON 配置化，支持运行时热切换，无需发版即可调整生成策略。",
-        "编排设计兼顾生成质量与失败兜底，保障儿童可用成品的稳定产出。"
-      ],
-      "source": "https://github.com/LancelotDDJ"
-    },
-    {
-      "id": "X-012",
-      "title": "多模型统一接入与流式对话",
-      "en": "UNIFIED LLM CLIENT & STREAMING",
-      "department": "汉王科技 · 核心工作",
-      "category": "实习经历",
-      "date": "2026.05 - 2026.08",
-      "lead": "Anthropic / OpenAI 兼容 API / SSE",
-      "clearance": "PUBLIC",
-      "abstract": "设计统一 LLM 客户端，以协议适配方式同时支持 Anthropic 与 OpenAI 兼容 API，按配置切换 DeepSeek / MiniMax / GLM 等多个大模型。",
-      "findings": [
-        "统一 LLM 客户端：协议适配层同时支持 Anthropic 与 OpenAI 兼容 API，按配置切换 DeepSeek / MiniMax / GLM 等多个大模型。",
-        "基于 SSE 实现逐字流式输出，通过“请求体保存 + 失败重试 + 双游标增量读取”解决长文本传输的中断与重复。",
-        "以聊天总结 Agent 控制多轮对话成本，平衡上下文质量与调用开销。"
-      ],
-      "source": "https://github.com/LancelotDDJ"
-    },
-    {
-      "id": "X-013",
-      "title": "AI 内容安全三重防线",
-      "en": "AI CONTENT SAFETY",
-      "department": "汉王科技 · 核心工作",
-      "category": "实习经历",
-      "date": "2026.05 - 2026.08",
-      "lead": "安全审查 / 内容过滤 / 图片审核",
-      "clearance": "PUBLIC",
-      "abstract": "开发安全审查、内容过滤与图片审核三重防线，保障未成年人内容安全；修复“孩子跳过等待动画导致未审核作品被展示”的线上漏洞。",
-      "findings": [
-        "三重防线：安全审查、内容过滤与图片审核分层拦截，覆盖文本与图片两类生成内容。",
-        "修复线上漏洞：孩子跳过等待动画可导致未审核作品被展示——补全前后端状态校验，闭环该绕过路径。",
-        "以未成年人内容安全为最高优先级，将校验逻辑前置于状态机而非仅依赖 UI 时序。"
-      ],
-      "source": "https://github.com/LancelotDDJ"
-    },
-    {
-      "id": "X-014",
-      "title": "电商信息智能采集与商家评估 Agent",
-      "en": "E-COMMERCE INTEL AGENT",
-      "department": "汉王科技 · 独立交付",
-      "category": "实习经历",
-      "date": "2026.05 - 2026.08",
-      "lead": "Playwright / asyncio / 大模型查询",
-      "clearance": "FEATURED",
-      "abstract": "面向公司 3C 电商产品推广素材生成服务的售前获客需求，从需求分析到设计、开发、交付独立完成桌面端自动化工具：输入淘宝/天猫搜索页 URL 与品类关键词，自动完成数据采集 → 清洗分类 → 大模型企业信息查询 → 多维度商家评估全流程，输出带客户优先级排序的交互式 HTML 报告。",
-      "findings": [
-        "将商务人员手动调研店铺的大量重复工作自动化，直接为商务团队提供线索筛选依据。",
-        "长任务支持断点续跑、运行时暂停/继续/跳过，适配真实办公场景的中断与恢复。",
-        "已覆盖多个品类，输出 S~D 五级客户优先级排序的交互式 HTML 报告。"
-      ],
-      "source": "https://github.com/LancelotDDJ"
-    },
-    {
-      "id": "X-015",
-      "title": "五阶段采集管道与反爬攻克",
-      "en": "SCRAPING PIPELINE & ANTI-BOT",
-      "department": "汉王科技 · 核心工作",
-      "category": "实习经历",
-      "date": "2026.05 - 2026.08",
-      "lead": "Playwright / 指纹伪造 / ARIA 定位",
-      "clearance": "PUBLIC",
-      "abstract": "独立设计五阶段采集管道：搜索列表采集 → 去重清洗 → 详情页抓取 → 大模型公司查询 → 多维评估报告；攻克淘宝反爬与动态页面难题，实现不依赖特定 CSS 选择器的鲁棒采集。",
-      "findings": [
-        "五阶段管道基于 Playwright + asyncio 异步编排，长任务支持断点续跑与运行时暂停/继续/跳过。",
-        "反爬与动态页面：JS 注入伪造浏览器指纹、持久化登录态复用、骨架屏轮询感知。",
-        "DOM 层级自适应爬升与 ARIA 分页定位：不依赖特定 CSS 选择器，页面改版不失效。"
-      ],
-      "source": "https://github.com/LancelotDDJ"
-    },
-    {
-      "id": "X-016",
-      "title": "多维度商家评分模型",
-      "en": "WEIGHTED MERCHANT SCORING",
-      "department": "汉王科技 · 核心工作",
-      "category": "实习经历",
-      "date": "2026.05 - 2026.08",
-      "lead": "加权评分 / S~D 五级排序",
-      "clearance": "PUBLIC",
-      "abstract": "设计多维度加权商家评分模型，综合销量适配、品牌独立、地域商业化、内容需求、品类匹配、店铺体量等因素，输出 S~D 五级客户优先级排序。",
-      "findings": [
-        "评分维度：销量适配、品牌独立、地域商业化、内容需求、品类匹配、店铺体量六因素加权。",
-        "输出 S~D 五级客户优先级排序，直接作为商务团队线索筛选依据。",
-        "模型已覆盖多个品类，评分口径随业务反馈持续校准。"
-      ],
-      "source": "https://github.com/LancelotDDJ"
-    },
-    {
-      "id": "X-017",
-      "title": "遗忘核研究 · 研究概览",
-      "en": "FORGETTING KERNEL · OVERVIEW",
-      "department": "硕士毕业论文",
-      "category": "科研论文",
-      "date": "2024.09 - 至今",
-      "lead": "DeGroot 模型 / 意见动力学",
-      "clearance": "OPEN SOURCE",
-      "abstract": "《遗忘核在信念动态系统中的作用模拟》：基于 DeGroot 模型引入遗忘核参数，仿真分析个体记忆衰减对群体共识形成的影响。",
-      "findings": [
-        "研究问题：个体记忆衰减（遗忘）如何影响群体共识的形成过程。",
-        "方法路线：在经典 DeGroot 信念动态模型中引入遗忘核参数，进行多条件仿真。",
-        "研究价值：为记忆机制与传播研究提供量化依据。"
-      ],
-      "source": "https://github.com/LancelotDDJ/Collective-Forgetting-Opinion-Dyn"
-    },
-    {
-      "id": "X-018",
-      "title": "遗忘核研究 · 实验设计与数据生成",
-      "en": "EXPERIMENT DESIGN & DATA",
-      "department": "硕士毕业论文",
-      "category": "科研论文",
-      "date": "2024.09 - 至今",
-      "lead": "网络拓扑 / 时序面板数据",
-      "clearance": "PUBLIC",
-      "abstract": "控制网络拓扑、遗忘强度、初始意见分布三类变量，生成多条件时序面板数据，为遗忘核效应的统计检验提供实验基础。",
-      "findings": [
-        "变量控制：网络拓扑、遗忘强度、初始意见分布三因素系统组合。",
-        "数据形态：多条件时序面板数据，支撑分组对比与趋势拟合。",
-        "可复用性：实验框架参数化，条件组合可扩展复跑。"
-      ],
-      "source": "https://github.com/LancelotDDJ/Collective-Forgetting-Opinion-Dyn"
-    },
-    {
-      "id": "X-019",
-      "title": "遗忘核研究 · 指标构建与分析框架",
-      "en": "METRICS & ANALYSIS FRAMEWORK",
-      "department": "硕士毕业论文",
-      "category": "科研论文",
-      "date": "2024.09 - 至今",
-      "lead": "共识时间 / 方差衰减 / 振荡幅度",
-      "clearance": "PUBLIC",
-      "abstract": "选取共识达成时间、意见方差衰减率、振荡幅度等指标量化遗忘核影响，搭建可复用分析框架；Python 清洗与聚合仿真数据。",
-      "findings": [
-        "指标体系：共识达成时间、意见方差衰减率、振荡幅度三维度量化遗忘核效应。",
-        "分析框架：Python 清洗与聚合仿真数据，分组对比和趋势拟合流程标准化、可复用。",
-        "可视化：收敛曲线与热力图揭示遗忘强度与共识速度的非线性关系。"
-      ],
-      "source": "https://github.com/LancelotDDJ/Collective-Forgetting-Opinion-Dyn"
-    },
-    {
-      "id": "X-020",
-      "title": "遗忘核研究 · 核心发现",
-      "en": "KEY FINDING: FORGETTING HELPS CONSENSUS",
-      "department": "硕士毕业论文",
-      "category": "科研论文",
-      "date": "2024.09 - 至今",
-      "lead": "统计建模 / 稳健性检验",
-      "clearance": "PUBLIC",
-      "abstract": "中等遗忘强度可显著缩短共识时间，且该效应在不同网络结构下稳健——提炼“适度遗忘促进共识”的核心发现。",
-      "findings": [
-        "核心发现：中等遗忘强度显著缩短共识达成时间，呈非线性关系。",
-        "稳健性：该效应在不同网络拓扑结构下均成立。",
-        "理论意义：为记忆机制与传播研究提供“适度遗忘促进共识”的量化依据。"
-      ],
-      "source": "https://github.com/LancelotDDJ/Collective-Forgetting-Opinion-Dyn"
-    },
-    {
-      "id": "X-021",
-      "title": "血细胞分类 · 研究概览",
-      "en": "BLOOD CELL STUDY · OVERVIEW",
-      "department": "研究生课程研究",
-      "category": "科研论文",
-      "date": "硕士研究生在读期间",
-      "lead": "ResNet / PCA+SVM",
-      "clearance": "PUBLIC",
-      "abstract": "对比深度学习方法（ResNet）与传统方法（PCA+SVM）在血细胞图像分类中的性能差异，形成对比分析报告，总结两类方法在医学图像任务中的适用条件。",
-      "findings": [
-        "研究问题：深度学习与传统机器学习在医学图像分类任务中的性能边界。",
-        "方法：固定实验条件，ResNet 与 PCA+SVM 同基准对比。",
-        "产出：对比分析报告，为后续项目选型提供依据。"
-      ],
-      "source": "https://github.com/LancelotDDJ"
-    },
-    {
-      "id": "X-022",
-      "title": "血细胞分类 · 对比实验与归因分析",
-      "en": "CONTROLLED EXPERIMENT & ATTRIBUTION",
-      "department": "研究生课程研究",
-      "category": "科研论文",
-      "date": "硕士研究生在读期间",
-      "lead": "混淆矩阵 / ROC-AUC / 消融分析",
-      "clearance": "PUBLIC",
-      "abstract": "固定数据划分、增强策略及随机种子保证评估公平；ResNet 达 98% 准确率；数据增强与迁移学习分别带来约 6% 和 9% 准确率提升。",
-      "findings": [
-        "公平性控制：固定数据划分、增强策略及随机种子，控制样本量与降维维度两组变量。",
-        "评估体系：准确率、精确率、召回率、F1、混淆矩阵、ROC-AUC 全面对比，重点分析少数类识别与误判。",
-        "归因结论：ResNet 在复杂背景和细胞重叠场景表现更优；数据增强约 +6%、迁移学习约 +9% 准确率，从特征表达能力解释深度学习增益。"
-      ],
-      "source": "https://github.com/LancelotDDJ"
-    },
-    {
-      "id": "X-023",
-      "title": "物联网农场 · 农业调研与系统实现",
-      "en": "IOT FARM · RESEARCH & SYSTEM",
-      "department": "本科毕业设计",
-      "category": "科研论文",
-      "date": "2024.01 - 2024.07",
-      "lead": "ZigBee / 云端专家系统",
-      "clearance": "PUBLIC",
-      "abstract": "实地考察云南阿拉比卡小粒咖啡种植环境，提炼室内关键参数；基于 ZigBee 构建传感器-控制器网络，云端专家系统分析并下发调控指令。",
-      "findings": [
-        "农业调研：实地考察云南阿拉比卡小粒咖啡种植环境，整理并提炼适合其生长的室内关键参数。",
-        "系统实现：ZigBee 传感器-控制器网络实时采集环境数据上传云端。",
-        "调控闭环：专家系统分析数据并下发调控指令，自动调节农场环境。"
-      ],
-      "source": "https://github.com/LancelotDDJ"
-    },
-    {
-      "id": "X-024",
-      "title": "物联网农场 · 实验验证与成果",
-      "en": "IOT FARM · VALIDATION",
-      "department": "本科毕业设计",
-      "category": "科研论文",
-      "date": "2024.01 - 2024.07",
-      "lead": "多参数实验 / 极端条件测试",
-      "clearance": "PUBLIC",
-      "abstract": "设计多参数实验，测试系统在温湿度变化及火灾等极端条件下的监测与响应能力；无人值守下实现风险实时报警与稳定精确调控。",
-      "findings": [
-        "实验设计：多参数实验覆盖温湿度变化及火灾等极端条件。",
-        "成果一：无人值守下实现火灾、水淹等风险实时报警。",
-        "成果二：正常运行条件下，稳定精确调控小规模封闭式农场环境。"
-      ],
-      "source": "https://github.com/LancelotDDJ"
-    },
-    {
-      "id": "X-025",
-      "title": "阿德莱德大学 · 数据科学硕士",
-      "en": "UNIVERSITY OF ADELAIDE · MDS",
-      "department": "硕士研究生在读",
-      "category": "教育背景",
-      "date": "2024.09 - 至今",
-      "lead": "数据科学 / 机器学习",
-      "clearance": "PUBLIC",
-      "abstract": "阿德莱德大学数据科学硕士在读，学术成绩专业排名前 10%，研究方向为多智能体系统、机器学习在复杂网络中的应用、基于 Agent 的行为演化模拟。",
-      "findings": [
-        "学位：数据科学硕士（Master of Data Science），2024.09 入学。",
-        "学术成绩：专业排名前 10%。",
-        "毕业论文：《遗忘核在信念动态系统中的作用模拟》（详见 X-017 至 X-020）。"
-      ],
-      "source": "https://github.com/LancelotDDJ"
-    },
-    {
-      "id": "X-026",
-      "title": "硕士研究方向",
-      "en": "RESEARCH DIRECTIONS",
-      "department": "阿德莱德大学",
-      "category": "教育背景",
-      "date": "2024.09 - 至今",
-      "lead": "多智能体系统 / 复杂网络",
-      "clearance": "PUBLIC",
-      "abstract": "研究方向：多智能体系统、机器学习在复杂网络中的应用、基于 Agent 的行为演化模拟。",
-      "findings": [
-        "多智能体系统：群体行为与共识形成的建模与仿真。",
-        "机器学习在复杂网络中的应用：网络结构上的学习与推断方法。",
-        "基于 Agent 的行为演化模拟：个体规则驱动宏观现象的涌现研究。"
-      ],
-      "source": "https://github.com/LancelotDDJ"
-    },
-    {
-      "id": "X-027",
-      "title": "硕士主修课程",
-      "en": "GRADUATE COURSEWORK",
-      "department": "阿德莱德大学",
-      "category": "教育背景",
-      "date": "2024.09 - 至今",
-      "lead": "机器学习 / 统计 / 数据挖掘 / 分布式",
-      "clearance": "PUBLIC",
-      "abstract": "主修课程：高级机器学习、高级统计学、数据挖掘、分布式系统、人工智能应用。",
-      "findings": [
-        "高级机器学习：模型理论与方法进阶。",
-        "高级统计学：推断与建模的统计基础。",
-        "数据挖掘 / 分布式系统 / 人工智能应用：从数据到系统的完整方法链。"
-      ],
-      "source": "https://github.com/LancelotDDJ"
-    },
-    {
-      "id": "X-028",
-      "title": "北京信息科技大学 · 物联网工程本科",
-      "en": "BISTU · IOT ENGINEERING",
-      "department": "本科",
-      "category": "教育背景",
-      "date": "2020.10 - 2024.06",
-      "lead": "物联网工程 / 传感器网络",
-      "clearance": "PUBLIC",
-      "abstract": "北京信息科技大学物联网工程本科，学术成绩专业排名前 10%，毕业设计为基于云端人工智能的先进物联网农场。",
-      "findings": [
-        "学位：物联网工程学士，2020.10 - 2024.06。",
-        "学术成绩：专业排名前 10%。",
-        "毕业设计：基于云端人工智能的先进物联网农场（详见 X-005、X-023、X-024）。"
-      ],
-      "source": "https://github.com/LancelotDDJ"
-    },
-    {
-      "id": "X-029",
-      "title": "本科主修课程",
-      "en": "UNDERGRADUATE COURSEWORK",
-      "department": "北京信息科技大学",
-      "category": "教育背景",
-      "date": "2020.10 - 2024.06",
-      "lead": "传感器网络 / 通信技术 / 数据结构",
-      "clearance": "PUBLIC",
-      "abstract": "主修课程：传感器网络搭建、高级通信技术、数据结构与算法。",
-      "findings": [
-        "传感器网络搭建：物联网感知层组网与实践。",
-        "高级通信技术：无线通信原理与协议。",
-        "数据结构与算法：工程计算的程序设计基础。"
-      ],
-      "source": "https://github.com/LancelotDDJ"
-    },
-    {
-      "id": "X-030",
-      "title": "本科毕业设计 · 云端 AI 物联网农场",
-      "en": "CAPSTONE · CLOUD-AI IOT FARM",
-      "department": "北京信息科技大学",
-      "category": "教育背景",
-      "date": "2024.01 - 2024.07",
-      "lead": "ZigBee / 专家系统 / 云端 AI",
-      "clearance": "PUBLIC",
-      "abstract": "基于 ZigBee 构建传感器-控制器网络，实时采集环境数据上传云端，由专家系统分析并下发调控指令，自动调节农场环境。",
-      "findings": [
-        "完整链路：感知层组网 → 云端数据 → 专家系统决策 → 指令下发调控。",
-        "极端条件验证：火灾、水淹等风险实时报警。",
-        "详细研究记录见 X-023 与 X-024。"
-      ],
-      "source": "https://github.com/LancelotDDJ"
-    },
-    {
-      "id": "X-031",
-      "title": "学术成绩 · 专业前 10%",
-      "en": "ACADEMIC STANDING · TOP 10%",
-      "department": "本科与硕士阶段",
-      "category": "教育背景",
-      "date": "2020.10 - 至今",
-      "lead": "本科 / 硕士 均为专业前 10%",
-      "clearance": "PUBLIC",
-      "abstract": "本科（北京信息科技大学）与硕士（阿德莱德大学）阶段学术成绩均为专业排名前 10%。",
-      "findings": [
-        "本科阶段：物联网工程专业排名前 10%。",
-        "硕士阶段：数据科学专业排名前 10%。",
-        "跨学科连续保持：从物联网工程到数据科学的学业延续性。"
-      ],
-      "source": "https://github.com/LancelotDDJ"
-    },
-    {
-      "id": "X-032",
-      "title": "语言能力",
-      "en": "LANGUAGES",
-      "department": "个人档案 · 教育",
-      "category": "教育背景",
-      "date": "长期",
-      "lead": "英语 IELTS 6.5 / 德语 A1",
-      "clearance": "PUBLIC",
-      "abstract": "英语 IELTS 6.5（阅读单项 8.0），德语 Goethe-Zertifikat A1。",
-      "findings": [
-        "英语：IELTS 6.5，阅读单项 8.0——可高效阅读英文技术文档与论文。",
-        "德语：Goethe-Zertifikat A1，基础沟通能力。",
-        "工作语言：中文母语，英文读写熟练。"
-      ],
-      "source": "https://github.com/LancelotDDJ"
-    },
-    {
-      "id": "X-033",
-      "title": "关于董德嘉",
-      "en": "ABOUT DONG DEJIA",
-      "department": "个人档案",
-      "category": "个人档案",
-      "date": "现居北京",
-      "lead": "13553039800 / LancelotDJ@outlook.com",
-      "clearance": "FEATURED",
-      "abstract": "董德嘉，24 岁，现居北京。阿德莱德大学数据科学硕士在读，专注于 AI/Agent 系统工程与数据自动化，可独立完成需求分析、架构设计、代码开发直至上线的全流程工作。",
-      "findings": [
-        "联系方式：电话 13553039800，邮箱 LancelotDJ@outlook.com。",
-        "基本情况：男，24 岁，现所在地北京。",
-        "开源主页：github.com/LancelotDDJ——Voyager、Coupang 分析、FruitAdvisor 等项目源码公开。"
-      ],
-      "source": "https://github.com/LancelotDDJ"
-    },
-    {
-      "id": "X-034",
-      "title": "技能 · 编程语言矩阵",
-      "en": "SKILLS · LANGUAGES",
+      "id": "S-001",
+      "title": "相关技能",
+      "en": "SKILLS MATRIX",
       "department": "个人档案 · 技能",
-      "category": "个人档案",
+      "category": "相关技能",
       "date": "持续更新",
-      "lead": "Python / Go / C / Kotlin / R / SQL / Shell / JS",
+      "lead": "Python / Go / Kotlin / React / PyTorch / Agent",
       "clearance": "PUBLIC",
-      "abstract": "编程语言：Python / Go / C / Kotlin / R / SQL / Shell / JavaScript / HTML / CSS。",
+      "abstract": "编程语言、前后端与桌面移动开发框架、机器学习框架与算法、AI 工具链与 Agent 开发工程，以及英语（IELTS 6.5）与德语（A1）语言能力。",
       "findings": [
-        "主力语言：Python（数据/AI/自动化）、JavaScript + HTML + CSS（前端）、Kotlin（Android）。",
-        "系统与后端：Go、C、SQL、Shell。",
-        "统计分析：R。"
+        "编程语言：Python / Go / C / Kotlin / R / SQL / Shell / JavaScript / HTML / CSS。",
+        "前端与后端开发：Gin / FastAPI / Vue 3 / React / Tkinter。",
+        "桌面端与移动端开发：Electron / Capacitor / Android。",
+        "机器学习框架与算法：PyTorch / TensorFlow / CNN / ResNet / MobileNetV2 / Transformer / Attention。",
+        "AI 工具链：Claude Code / Codex / OpenCode / WorkBuddy / Kimi Code——熟练运用 AI 工具提效，坚持独立判断。",
+        "Agent 开发工程：Prompt Engineering / Context Engineering / Harness Engineering / RAG。",
+        "语言能力：英语 IELTS 6.5（阅读单项 8.0）；德语 Goethe-Zertifikat A1。"
       ],
       "source": "https://github.com/LancelotDDJ"
-    },
-    {
-      "id": "X-035",
-      "title": "技能 · 开发框架与平台",
-      "en": "SKILLS · FRAMEWORKS & PLATFORMS",
-      "department": "个人档案 · 技能",
-      "category": "个人档案",
-      "date": "持续更新",
-      "lead": "Gin / FastAPI / Vue 3 / React / Electron",
-      "clearance": "PUBLIC",
-      "abstract": "前端与后端开发：Gin / FastAPI / Vue 3 / React / Tkinter；桌面端与移动端开发：Electron / Capacitor / Android。",
-      "findings": [
-        "后端：Gin（Go）、FastAPI（Python）。",
-        "前端：Vue 3、React、Tkinter。",
-        "桌面与移动：Electron、Capacitor、Android 原生。"
-      ],
-      "source": "https://github.com/LancelotDDJ"
-    },
-    {
-      "id": "X-036",
-      "title": "技能 · 机器学习与 AI 框架",
-      "en": "SKILLS · ML & AI",
-      "department": "个人档案 · 技能",
-      "category": "个人档案",
-      "date": "持续更新",
-      "lead": "PyTorch / TensorFlow / CNN / Transformer",
-      "clearance": "PUBLIC",
-      "abstract": "机器学习框架与算法：PyTorch / TensorFlow / CNN / ResNet / MobileNetV2 / Transformer / Attention。",
-      "findings": [
-        "框架：PyTorch、TensorFlow。",
-        "视觉模型：CNN、ResNet、MobileNetV2（含迁移学习与 ONNX 部署）。",
-        "序列模型：Transformer、Attention 机制。"
-      ],
-      "source": "https://github.com/LancelotDDJ"
-    },
-    {
-      "id": "X-037",
-      "title": "技能 · Agent 开发工程",
-      "en": "SKILLS · AGENT ENGINEERING",
-      "department": "个人档案 · 技能",
-      "category": "个人档案",
-      "date": "持续更新",
-      "lead": "Prompt / Context / Harness / RAG",
-      "clearance": "PUBLIC",
-      "abstract": "Agent 开发工程：Prompt Engineering / Context Engineering / Harness Engineering / RAG——从提示词到上下文、执行框架与检索增强的完整 Agent 工程能力。",
-      "findings": [
-        "Prompt Engineering：提示词结构化与配置化管理。",
-        "Context Engineering：多轮对话上下文与成本控制。",
-        "Harness Engineering：Agent 编排、工具调用与执行框架。",
-        "RAG：本地知识检索增强，让生成基于真实数据。"
-      ],
-      "source": "https://github.com/LancelotDDJ"
-    },
-    {
-      "id": "X-038",
-      "title": "技能 · AI 工具链",
-      "en": "SKILLS · AI TOOLING",
-      "department": "个人档案 · 技能",
-      "category": "个人档案",
-      "date": "持续更新",
-      "lead": "Claude Code / Codex / WorkBuddy",
-      "clearance": "PUBLIC",
-      "abstract": "AI 工具：Claude Code / Codex / OpenCode / WorkBuddy / Kimi Code——熟练运用 AI 工具提效，但坚持独立判断，不依赖 AI 替代思考。",
-      "findings": [
-        "熟练使用 Claude Code、Codex、OpenCode、WorkBuddy、Kimi Code 等 AI 编程工具。",
-        "擅长以 AI 工具搭建多 Agent 系统，放大工程产能。",
-        "原则：工具提效，判断自主——不依赖 AI 替代思考。"
-      ],
-      "source": "https://github.com/LancelotDDJ"
-    },
-    {
-      "id": "X-039",
-      "title": "自我评价",
-      "en": "SELF ASSESSMENT",
-      "department": "个人档案",
-      "category": "个人档案",
-      "date": "长期",
-      "lead": "独立判断 / 跨学科 / 全流程",
-      "clearance": "PUBLIC",
-      "abstract": "熟练运用 AI 工具、尤其擅长搭建多 Agent 系统，但坚持独立判断；数理功底与工程实操能力扎实，擅长多维度跨学科思路解决研发问题；可独立完成需求分析到上线的全流程工作。",
-      "findings": [
-        "熟练运用 AI 工具、尤其擅长搭建多 Agent 系统，但坚持独立判断，不依赖 AI 替代思考。",
-        "数理功底与工程实操能力扎实，擅长多维度跨学科思路解决研发问题。",
-        "可独立完成需求分析、架构设计、代码开发直至上线的全流程工作。"
-      ],
-      "source": "https://github.com/LancelotDDJ"
-    },
-    {
-      "id": "X-040",
-      "title": "本站说明 · 版权与致谢",
-      "en": "COLOPHON & CREDITS",
-      "department": "个人档案 · 本站",
-      "category": "个人档案",
-      "date": "2026.09",
-      "lead": "MIT / MiSans / Three.js",
-      "clearance": "PUBLIC",
-      "abstract": "本站为静态个人简历终端：键盘 ←→ 切换分类、↑↓ 翻阅档案、Enter 读取、/ 检索。界面工程基于 MIT 许可的开源项目改造，已去除全部第三方 IP 元素。",
-      "findings": [
-        "界面工程：基于 LBEILC/RhineLabUI（MIT License, Copyright (c) 2026 LBEILC）改造，保留其工程架构与动效，去除开场动画与全部《明日方舟》相关 IP 元素。",
-        "字体：MiSans（小米官方字体，保留其许可与署名）；Three.js、Rolling Number 等依赖遵循各自许可。",
-        "内容：全部档案内容来自董德嘉本人真实简历，导出 TXT 与页面一致。",
-        "操作指南：←→ 切换分类，↑↓ 翻阅档案，Enter 读取，/ 打开检索，Esc 返回。"
-      ],
-      "source": "https://github.com/LBEILC/RhineLabUI"
     }
   ]
 }

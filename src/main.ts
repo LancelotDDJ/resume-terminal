@@ -50,11 +50,11 @@ $("#stage").innerHTML = `
   <svg id="inspection-marks" viewBox="0 0 1920 1080" aria-hidden="true"><path id="inspection-lines"/><g id="inspection-corners"></g><circle id="inspection-point" r="1.8"/></svg>
   <div id="inspection-text" aria-hidden="true">PORTFOLIO:<strong>DONG DEJIA</strong></div>
   <section id="archive-ui" class="archive-ui" aria-label="档案选择">
-    <div class="archive-callout"><div class="eyebrow">PERSONAL ARCHIVE <span>／</span> <span id="archive-category">项目经历</span></div><button class="file-title" data-action="open">FILE NUMBER: <span id="selected-id">X-<span id="selected-code">001</span></span><span class="file-open">↗</span></button><div class="callout-rule"><i></i></div><div class="file-summary"><span id="selected-title">Voyager 海外旅行全生命周期管理应用</span><span id="selected-clearance">FEATURED</span></div><button class="read-file" data-action="open">ACCESS FILE <span>→</span></button></div>
-    <div id="hover-label" class="hover-label" hidden>X-<span id="hover-code">001</span> / <span id="hover-title"></span></div>
-    <div class="archive-counter"><span class="tiny-label">ARCHIVE / SELECT</span><div><span id="selected-number">01</span><i>/</i><span class="count-total">08</span></div></div>
+    <div class="archive-callout"><div class="eyebrow">PERSONAL ARCHIVE <span>／</span> <span id="archive-category">个人简介</span></div><button class="file-title" data-action="open">FILE NUMBER: <span id="selected-id"><span id="selected-prefix">O</span>-<span id="selected-code">001</span></span><span class="file-open">↗</span></button><div class="callout-rule"><i></i></div><div class="file-summary"><span id="selected-title">关于董德嘉</span><span id="selected-clearance">FEATURED</span></div><button class="read-file" data-action="open">ACCESS FILE <span>→</span></button></div>
+    <div id="hover-label" class="hover-label" hidden><span id="hover-prefix">O</span>-<span id="hover-code">001</span> / <span id="hover-title"></span></div>
+    <div class="archive-counter"><span class="tiny-label">ARCHIVE / SELECT</span><div><span id="selected-number">01</span><i>/</i><span class="count-total">03</span></div></div>
     <div class="archive-navigation"><button data-action="prev" aria-label="上一个档案">↑</button><div id="file-ticks" class="file-ticks"></div><button data-action="next" aria-label="下一个档案">↓</button></div>
-    <div class="column-navigation"><button data-action="column-prev" aria-label="上一列">←</button><div><span id="column-number">COLUMN <span id="column-index">01</span> / 05</span><strong id="column-name">项目经历</strong></div><button data-action="column-next" aria-label="下一列">→</button></div>
+    <div class="column-navigation"><button data-action="column-prev" aria-label="上一列">←</button><div><span id="column-number">COLUMN <span id="column-index">01</span> / 06</span><strong id="column-name">个人简介</strong></div><button data-action="column-next" aria-label="下一列">→</button></div>
     <div class="archive-hint"><kbd>←</kbd> <kbd>→</kbd> 切换分类 <span>／</span> <kbd>↑</kbd> <kbd>↓</kbd> 前后档案 <span>／</span> <kbd>ENTER</kbd> 读取</div>
   </section>
   <section id="detail-ui" class="detail-ui" aria-label="档案内容" hidden>
@@ -317,6 +317,7 @@ function updateSelection(navigation?: ArchiveNavigation) {
         ? "up"
         : "down"
       : "auto";
+  $("#selected-prefix").textContent = r.id[0];
   selectedCode.update({
     value: Number(r.id.slice(2)),
     animated: !prefs.reduced && mode === "archive",
@@ -406,7 +407,7 @@ function renderDetail() {
   <dl class="metadata"><div><dt>ROLE / 角色</dt><dd>${escapeHtml(r.department)}</dd></div><div><dt>PERIOD / 时期</dt><dd>${escapeHtml(r.date)}</dd></div><div><dt>STACK / 技术栈</dt><dd>${escapeHtml(r.lead)}</dd></div><div><dt>STATUS / 状态</dt><dd><i></i>${r.clearance === "RESTRICTED" ? "目录访问" : "已归档 · 可读取"}</dd></div></dl>
   <div class="detail-tabs" role="tablist"><button id="tab-overview" class="active" role="tab" aria-controls="tab-panel" aria-selected="true" data-tab="overview">01 <span>概述</span></button><button id="tab-notes" role="tab" aria-controls="tab-panel" aria-selected="false" data-tab="notes">02 <span>详细记录</span></button><button id="tab-history" role="tab" aria-controls="tab-panel" aria-selected="false" data-tab="history">03 <span>访问日志</span></button><i class="tab-indicator" aria-hidden="true"></i></div>
   <div id="tab-panel" class="tab-panel" role="tabpanel">${overview()}</div>
-  <div class="detail-actions"><button class="solid-button" data-action="bookmark">${saved.has(r.id) ? "− REMOVE FROM SAVED" : "＋ SAVE ARCHIVE"}<span>${saved.has(r.id) ? "已收藏" : "收藏档案"}</span></button><a class="export-button" href="/archives/DDJ-${r.id}.txt" download="DDJ-${r.id}.txt" aria-label="导出 ${r.id} 档案">EXPORT <span>↓</span></a></div>
+  <div class="detail-actions"><button class="solid-button" data-action="bookmark">${saved.has(r.id) ? "− REMOVE FROM SAVED" : "＋ SAVE ARCHIVE"}<span>${saved.has(r.id) ? "已收藏" : "收藏档案"}</span></button><a class="export-button" href="${import.meta.env.BASE_URL}archives/DDJ-${r.id}.txt" download="DDJ-${r.id}.txt" aria-label="导出 ${r.id} 档案">EXPORT <span>↓</span></a></div>
   <div class="detail-footnote"><a href="${escapeHtml(r.source)}" target="_blank" rel="noopener">相关链接 ↗</a><span>${String(selected + 1).padStart(3, "0")} / ${String(records.length).padStart(3, "0")}</span></div>`;
   $("#detail-content").setAttribute("tabindex", "-1");
   $('[data-action="bookmark"]').setAttribute("aria-pressed", String(saved.has(r.id)));
@@ -552,7 +553,7 @@ function updateQualitySummary() {
   summary.textContent = `实际渲染 ${canvas.width} × ${canvas.height} · ${prefs.rendering.antialias === "smaa" ? "SMAA" : "原始抗锯齿"} · 纹理 ${metrics.anisotropy ?? 1}×${metrics.limited ? " · 已达到缓冲上限" : ""}`;
 }
 function settingsMarkup() {
-  return `<h2>SYSTEM SETTINGS<small>终端偏好设置</small></h2><p class="settings-intro">DONG DEJIA <span>·</span> PERSONAL ARCHIVE</p><div class="settings-list">${audioSettingsMarkup(prefs)}<label><div><strong>REDUCED MOTION</strong><span>减少镜头移动和过渡动效</span></div><input type="checkbox" data-pref="reduced" ${prefs.reduced ? "checked" : ""}/><i class="toggle"></i></label></div>${qualityMarkup(prefs.rendering)}<div class="settings-shortcuts"><span>KEYBOARD CONTROLS</span><p><kbd>←</kbd><kbd>→</kbd> 切换分类 <kbd>↑</kbd><kbd>↓</kbd> 选档 <kbd>ENTER</kbd> 读取 <kbd>/</kbd> 检索 <kbd>ESC</kbd> 返回</p></div><div class="settings-bottom"><button data-action="fullscreen">FULLSCREEN <span>↗</span></button></div><div class="modal-bottom"><span>PORTFOLIO TERMINAL / 1.0 · 使用 MiSans 字体（小米） <a href="/fonts/MiSans-license.pdf" target="_blank" rel="noopener">字体许可</a></span><span>DONG DEJIA</span></div>`;
+  return `<h2>SYSTEM SETTINGS<small>终端偏好设置</small></h2><p class="settings-intro">DONG DEJIA <span>·</span> PERSONAL ARCHIVE</p><div class="settings-list">${audioSettingsMarkup(prefs)}<label><div><strong>REDUCED MOTION</strong><span>减少镜头移动和过渡动效</span></div><input type="checkbox" data-pref="reduced" ${prefs.reduced ? "checked" : ""}/><i class="toggle"></i></label></div>${qualityMarkup(prefs.rendering)}<div class="settings-shortcuts"><span>KEYBOARD CONTROLS</span><p><kbd>←</kbd><kbd>→</kbd> 切换分类 <kbd>↑</kbd><kbd>↓</kbd> 选档 <kbd>ENTER</kbd> 读取 <kbd>/</kbd> 检索 <kbd>ESC</kbd> 返回</p></div><div class="settings-bottom"><button data-action="fullscreen">FULLSCREEN <span>↗</span></button></div><div class="modal-bottom"><span>PORTFOLIO TERMINAL / 1.0 · 使用 MiSans 字体（小米） <a href="${import.meta.env.BASE_URL}fonts/MiSans-license.pdf" target="_blank" rel="noopener">字体许可</a></span><span>DONG DEJIA</span></div>`;
 }
 
 document.addEventListener("input", (e) => {
@@ -772,11 +773,11 @@ function bootFrame(t: number) {
   }
   if (t >= 25.68) {
     step = "select";
-    caption = "编号：X-001";
+    caption = `编号：${records[selected].id}`;
   }
   if (t >= 28.3) {
     step = "inspect";
-    caption = t >= 29.3 ? "保密级别：商业区" : "编号：X-001";
+    caption = t >= 29.3 ? `访问范围：${records[selected].clearance}` : `编号：${records[selected].id}`;
   }
   if (step !== lastStep) {
     $("#stage").dataset.boot = step;
@@ -867,6 +868,7 @@ async function start() {
         return;
       }
       const animated = !prefs.reduced && mode === "archive";
+      $("#hover-prefix").textContent = records[i].id[0];
       hoverCode.update({
         value: Number(records[i].id.slice(2)),
         animated: !label.hidden && animated,

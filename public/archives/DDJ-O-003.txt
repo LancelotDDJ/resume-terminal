@@ -1,5 +1,5 @@
 ﻿DONG DEJIA · PERSONAL ARCHIVE
-FILE X-040 / 本站说明 · 版权与致谢
+FILE O-003 / 本站说明 · 版权与致谢
 COLOPHON & CREDITS
 
 角色：个人档案 · 本站
@@ -11,9 +11,8 @@ COLOPHON & CREDITS
 
 详细记录
 1. 界面工程：基于 LBEILC/RhineLabUI（MIT License, Copyright (c) 2026 LBEILC）改造，保留其工程架构与动效，去除开场动画与全部《明日方舟》相关 IP 元素。
-2. 字体：MiSans（小米官方字体，保留其许可与署名）；Three.js、Rolling Number 等依赖遵循各自许可。
-3. 内容：全部档案内容来自董德嘉本人真实简历，导出 TXT 与页面一致。
-4. 操作指南：←→ 切换分类，↑↓ 翻阅档案，Enter 读取，/ 打开检索，Esc 返回。
+2. 字体：MiSans（小米官方字体，保留其许可与署名）；Three.js、Rolling 等开源依赖的许可文件随站分发。
+3. 内容：全部档案内容来自董德嘉本人真实简历，按个人简介 / 教育 / 实习 / 项目 / 科研 / 技能六类组织，每类内按时间由新到旧编号。
 
 相关链接：https://github.com/LBEILC/RhineLabUI
 本档案内容来自董德嘉本人真实简历。

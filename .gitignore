@@ -3,3 +3,5 @@ dist/
 fonts-original/
 *.log
 .DS_Store
+dist-stale/
+dist-stale/

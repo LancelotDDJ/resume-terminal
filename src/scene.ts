@@ -12,7 +12,7 @@ import { applyTextureQuality, resizeQuality } from "./quality-renderer";
 import { CardAppearance } from "./appearance";
 import { configureInternalOptics } from "./internal-optics";
 import { DecryptionController } from "./decryption";
-import { fileAtSlot, fileLocation } from "./data";
+import { archiveColumns, fileAtSlot, fileLocation } from "./data";
 import {
   cellKey,
   sameCell,
@@ -24,6 +24,7 @@ import {
   LOOP_ROWS,
   COLUMN_SPACING,
   ROW_SPACING,
+  CENTER_LANE,
   type ArchiveCell,
   type ArchiveNavigation,
 } from "./archive-loop";
@@ -175,7 +176,7 @@ export class ArchiveScene {
     this.scene.add(floor);
     this.camera.position.set(-62.26, 35.98, 43.28);
     this.cameraAim.set(-0.5, 1.1, 0.4);
-    this.camera.fov = 6.15;
+    this.camera.fov = 7.38;
     this.camera.lookAt(this.cameraAim);
     this.composer = new EffectComposer(this.renderer);
     this.composer.addPass(new RenderPass(this.scene, this.camera));
@@ -200,7 +201,7 @@ export class ArchiveScene {
     this.composer.addPass(new OutputPass());
     this.bindPointer();
   }
-  async load(assetUrl = "/assets/archive-cassette.glb") {
+  async load(assetUrl = `${import.meta.env.BASE_URL}assets/archive-cassette.glb`) {
     this.labelMark.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(labelMarkSvg)}`;
     await this.labelMark.decode();
     const gltf = await new GLTFLoader().loadAsync(
@@ -364,7 +365,7 @@ export class ArchiveScene {
   private assemblyTemplate?: Promise<THREE.Group>;
   async createAssemblyModel() {
     this.assemblyTemplate ??= new GLTFLoader()
-      .loadAsync("/assets/archive-assembly.glb")
+      .loadAsync(`${import.meta.env.BASE_URL}assets/archive-assembly.glb`)
       .then((gltf) => {
         gltf.scene.updateMatrixWorld(true);
         return gltf.scene;
@@ -494,7 +495,7 @@ export class ArchiveScene {
   }
   private cellPosition(cell: ArchiveCell) {
     return new THREE.Vector3(
-      (cell.lane - 2) * COLUMN_SPACING,
+      (cell.lane - CENTER_LANE) * COLUMN_SPACING,
       -4.6,
       (cell.row - 15.5) * ROW_SPACING,
     );
@@ -505,7 +506,7 @@ export class ArchiveScene {
     const shift = {
       lane:
         Math.abs(this.selectedCell.lane) > 2048
-          ? Math.round((this.selectedCell.lane - 2) / 5) * 5
+          ? Math.round((this.selectedCell.lane - CENTER_LANE) / archiveColumns.length) * archiveColumns.length
           : 0,
       row:
         Math.abs(this.selectedCell.row) > 2048
@@ -787,14 +788,14 @@ export class ArchiveScene {
     // movement of the whole array, just like the existing front/back rail.
     const trackX = cinematic ? 0 : this.columnCamera.value;
     const center = {
-      lane: this.columnCamera.value / COLUMN_SPACING + 2,
+      lane: this.columnCamera.value / COLUMN_SPACING + CENTER_LANE,
       row: (-this.rail.value - 2.17) / ROW_SPACING + 15.5,
     };
     for (let i = 0; i < this.positions.length; i++) {
       this.cells[i] =
         cinematic || !this.looping ? poolCell(i) : visibleCell(i, center);
       this.positions[i].set(
-        (this.cells[i].lane - 2) * COLUMN_SPACING,
+        (this.cells[i].lane - CENTER_LANE) * COLUMN_SPACING,
         -4.6,
         (this.cells[i].row - 15.5) * ROW_SPACING,
       );

@@ -416,7 +416,7 @@ export class TerminalAudio {
     if (this.buffers) return Promise.resolve();
     this.loading ??= Promise.all(
       STEMS.map(async (name) => {
-        const response = await fetch(`/audio/${name}.ogg`);
+        const response = await fetch(`${import.meta.env.BASE_URL}audio/${name}.ogg`);
         if (!response.ok) throw new Error(`Music ${name}: ${response.status}`);
         return c.decodeAudioData(await response.arrayBuffer());
       }),

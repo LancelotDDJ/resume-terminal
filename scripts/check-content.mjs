@@ -9,7 +9,7 @@ import {
 import { escapeHtml } from "../src/html.ts";
 
 const content = await loadContent();
-test("all forty downloads match the shared content, including the UTF-8 BOM", async () => {
+test("all fifteen downloads match the shared content, including the UTF-8 BOM", async () => {
   for (const record of content.records) {
     assert.equal(
       (
@@ -44,7 +44,7 @@ const invalidCases = [
   [
     "duplicate ID",
     (c) => {
-      c.records[1].id = "X-001";
+      c.records[1].id = c.records[0].id;
     },
     /重复编号/,
   ],
@@ -53,7 +53,7 @@ const invalidCases = [
     (c) => {
       [c.records[0], c.records[1]] = [c.records[1], c.records[0]];
     },
-    /X-001/,
+    /O-001/,
   ],
   [
     "unknown category",
@@ -63,18 +63,18 @@ const invalidCases = [
     /未知分类/,
   ],
   [
-    "unbalanced columns",
+    "wrong category prefix",
     (c) => {
       c.records[0].category = c.columns[1];
     },
-    /八份档案/,
+    /E-001/,
   ],
   [
     "missing record",
     (c) => {
       c.records.pop();
     },
-    /四十份档案/,
+    /十五份档案/,
   ],
   [
     "null record",
@@ -130,7 +130,7 @@ const invalidCases = [
     (c) => {
       c.columns[0] = "其他";
     },
-    /相同的五个分类/,
+    /相同的六个分类/,
   ],
 ];
 for (const [name, mutate, error] of invalidCases) {
