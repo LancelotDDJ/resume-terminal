@@ -13,7 +13,6 @@ ABOUT DONG DEJIA
 1. 联系方式：电话 13553039800，邮箱 LancelotDJ@outlook.com。
 2. 基本情况：男，24 岁，现所在地北京。
 3. 开源主页：github.com/LancelotDDJ——Voyager、Coupang 分析、FruitAdvisor 等项目源码公开。
-4. 求职方向：AI/Agent 研发、数据工程、全栈开发。
 
 相关链接：https://github.com/LancelotDDJ
 本档案内容来自董德嘉本人真实简历。
