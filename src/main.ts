@@ -230,12 +230,17 @@ function fit() {
 }
 window.addEventListener("resize", fit);
 fit();
-$("#file-ticks").innerHTML = columnFiles(fileLocation(selected).lane)
-  .map(
-    (index) => `<button data-select="${index}"></button>`,
-  )
-  .join("");
-const fileTicks = [...$("#file-ticks").querySelectorAll<HTMLButtonElement>("button")];
+let fileTicks: HTMLButtonElement[] = [];
+let ticksLane = -1;
+function renderFileTicks(lane: number) {
+  if (lane === ticksLane) return;
+  ticksLane = lane;
+  $("#file-ticks").innerHTML = columnFiles(lane)
+    .map((index) => `<button data-select="${index}"></button>`)
+    .join("");
+  fileTicks = [...$("#file-ticks").querySelectorAll<HTMLButtonElement>("button")];
+}
+renderFileTicks(fileLocation(selected).lane);
 
 function setMode(next: Mode) {
   const previousMode = mode;
@@ -343,6 +348,7 @@ function updateSelection(navigation?: ArchiveNavigation) {
   columnTitle.update({ text: archiveColumns[lane], animated: !prefs.reduced && mode === "archive" });
   $<HTMLButtonElement>('[data-action="column-prev"]').disabled = false;
   $<HTMLButtonElement>('[data-action="column-next"]').disabled = false;
+  renderFileTicks(lane);
   fileTicks.forEach((button, slot) => {
     const index = files[slot], record = records[index];
     button.dataset.select = String(index);
