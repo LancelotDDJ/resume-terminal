@@ -1,0 +1,18 @@
+﻿DONG DEJIA · PERSONAL ARCHIVE
+FILE X-012 / 多模型统一接入与流式对话
+UNIFIED LLM CLIENT & STREAMING
+
+角色：汉王科技 · 核心工作
+时期：2026.05 - 2026.08
+技术栈：Anthropic / OpenAI 兼容 API / SSE
+访问范围：PUBLIC
+
+设计统一 LLM 客户端，以协议适配方式同时支持 Anthropic 与 OpenAI 兼容 API，按配置切换 DeepSeek / MiniMax / GLM 等多个大模型。
+
+详细记录
+1. 统一 LLM 客户端：协议适配层同时支持 Anthropic 与 OpenAI 兼容 API，按配置切换 DeepSeek / MiniMax / GLM 等多个大模型。
+2. 基于 SSE 实现逐字流式输出，通过“请求体保存 + 失败重试 + 双游标增量读取”解决长文本传输的中断与重复。
+3. 以聊天总结 Agent 控制多轮对话成本，平衡上下文质量与调用开销。
+
+相关链接：https://github.com/LancelotDDJ
+本档案内容来自董德嘉本人真实简历。

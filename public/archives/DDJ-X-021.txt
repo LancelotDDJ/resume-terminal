@@ -1,0 +1,18 @@
+﻿DONG DEJIA · PERSONAL ARCHIVE
+FILE X-021 / 血细胞分类 · 研究概览
+BLOOD CELL STUDY · OVERVIEW
+
+角色：研究生课程研究
+时期：硕士研究生在读期间
+技术栈：ResNet / PCA+SVM
+访问范围：PUBLIC
+
+对比深度学习方法（ResNet）与传统方法（PCA+SVM）在血细胞图像分类中的性能差异，形成对比分析报告，总结两类方法在医学图像任务中的适用条件。
+
+详细记录
+1. 研究问题：深度学习与传统机器学习在医学图像分类任务中的性能边界。
+2. 方法：固定实验条件，ResNet 与 PCA+SVM 同基准对比。
+3. 产出：对比分析报告，为后续项目选型提供依据。
+
+相关链接：https://github.com/LancelotDDJ
+本档案内容来自董德嘉本人真实简历。

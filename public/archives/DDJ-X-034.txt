@@ -1,0 +1,18 @@
+﻿DONG DEJIA · PERSONAL ARCHIVE
+FILE X-034 / 技能 · 编程语言矩阵
+SKILLS · LANGUAGES
+
+角色：个人档案 · 技能
+时期：持续更新
+技术栈：Python / Go / C / Kotlin / R / SQL / Shell / JS
+访问范围：PUBLIC
+
+编程语言：Python / Go / C / Kotlin / R / SQL / Shell / JavaScript / HTML / CSS。
+
+详细记录
+1. 主力语言：Python（数据/AI/自动化）、JavaScript + HTML + CSS（前端）、Kotlin（Android）。
+2. 系统与后端：Go、C、SQL、Shell。
+3. 统计分析：R。
+
+相关链接：https://github.com/LancelotDDJ
+本档案内容来自董德嘉本人真实简历。

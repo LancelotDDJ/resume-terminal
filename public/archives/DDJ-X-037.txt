@@ -1,0 +1,19 @@
+﻿DONG DEJIA · PERSONAL ARCHIVE
+FILE X-037 / 技能 · Agent 开发工程
+SKILLS · AGENT ENGINEERING
+
+角色：个人档案 · 技能
+时期：持续更新
+技术栈：Prompt / Context / Harness / RAG
+访问范围：PUBLIC
+
+Agent 开发工程：Prompt Engineering / Context Engineering / Harness Engineering / RAG——从提示词到上下文、执行框架与检索增强的完整 Agent 工程能力。
+
+详细记录
+1. Prompt Engineering：提示词结构化与配置化管理。
+2. Context Engineering：多轮对话上下文与成本控制。
+3. Harness Engineering：Agent 编排、工具调用与执行框架。
+4. RAG：本地知识检索增强，让生成基于真实数据。
+
+相关链接：https://github.com/LancelotDDJ
+本档案内容来自董德嘉本人真实简历。

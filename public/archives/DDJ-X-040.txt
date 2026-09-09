@@ -1,0 +1,19 @@
+﻿DONG DEJIA · PERSONAL ARCHIVE
+FILE X-040 / 本站说明 · 版权与致谢
+COLOPHON & CREDITS
+
+角色：个人档案 · 本站
+时期：2026.09
+技术栈：MIT / MiSans / Three.js
+访问范围：PUBLIC
+
+本站为静态个人简历终端：键盘 ←→ 切换分类、↑↓ 翻阅档案、Enter 读取、/ 检索。界面工程基于 MIT 许可的开源项目改造，已去除全部第三方 IP 元素。
+
+详细记录
+1. 界面工程：基于 LBEILC/RhineLabUI（MIT License, Copyright (c) 2026 LBEILC）改造，保留其工程架构与动效，去除开场动画与全部《明日方舟》相关 IP 元素。
+2. 字体：MiSans（小米官方字体，保留其许可与署名）；Three.js、Rolling Number 等依赖遵循各自许可。
+3. 内容：全部档案内容来自董德嘉本人真实简历，导出 TXT 与页面一致。
+4. 操作指南：←→ 切换分类，↑↓ 翻阅档案，Enter 读取，/ 打开检索，Esc 返回。
+
+相关链接：https://github.com/LBEILC/RhineLabUI
+本档案内容来自董德嘉本人真实简历。
