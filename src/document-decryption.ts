@@ -77,7 +77,7 @@ export class DocumentDecryption {
       // opening with the glass, and its easing tail lasts a little longer.
       if (this.started === null && frame.clarity > 0) this.started = now;
       if (this.started !== null)
-        this.progress = Math.min(1, Math.max(0, (now - this.started) / 0.95));
+        this.progress = Math.min(1, Math.max(0, (now - this.started) / 0.7));
     }
     if (this.progress === 1) this.remove();
     else if (this.started !== null) this.paint();
@@ -86,7 +86,7 @@ export class DocumentDecryption {
   private paint() {
     const count = Math.max(1, this.covers.length - 1);
     for (const cover of this.covers) {
-      const delay = (cover.order / count) * 0.22;
+      const delay = (cover.order / count) * 0.16;
       const t = Math.min(1, Math.max(0, (this.progress - delay) / 0.78));
       // Brief acceleration, decisive departure, long deceleration; no bounce.
       const eased = t < 0.2
