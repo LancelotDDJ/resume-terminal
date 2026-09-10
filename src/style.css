@@ -963,11 +963,19 @@ button {
   margin-top: 22px;
 }
 .detail-footnote a {
-  color: inherit;
+  color: #24261f;
   text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 0.9px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid rgba(36, 38, 31, 0.22);
+  transition:
+    color 0.2s,
+    border-color 0.2s;
 }
 .detail-footnote a:hover {
-  text-decoration: underline;
+  color: #a27849;
+  border-bottom-color: #a27849;
 }
 .modal-backdrop {
   position: absolute;

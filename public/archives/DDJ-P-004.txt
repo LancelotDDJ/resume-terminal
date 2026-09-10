@@ -4,16 +4,18 @@ FRUIT ADVISOR
 
 角色：独立开发 · 移动端 + 深度学习
 时期：2026.06
-技术栈：PyTorch / MobileNetV2 / ONNX / Jetpack Compose
+技术栈：Kotlin / Jetpack Compose / ONNX Runtime / PyTorch
 访问范围：OPEN SOURCE
 
-独立完成从模型训练到移动端部署的全链路开发。基于 Fruits-360 数据集训练 MobileNetV2，经迁移学习达 99% 验证准确率；客户端离线推理，对成熟度、外观品质及时令匹配度综合评估并生成购买建议。
+独立完成从模型训练到移动端部署的全链路开发：拍照识别水果品种（197 类），结合成熟度、外观品质、时令匹配、风味预估四个维度给出综合购买建议。模型完全本地推理、无需联网，单次识别 <1 秒。
 
 详细记录
-1. 模型训练：PyTorch 迁移学习训练 MobileNetV2 水果分类模型，导出 ONNX 并适配手机客户端。
-2. 客户端搭建：集成 ONNX Runtime 实现本地离线推理，结合自研颜色分析引擎多维度评估水果品质。
-3. 数据分析与建议生成：CameraX 照片采集流程 + Jetpack Compose 完整 UI；自研 HSV 颜色空间分析引擎对成熟度、外观品质、时令匹配进行多维度综合评估，生成购买建议。
-4. 项目成果：支持 197 种水果的离线识别，综合建议含成熟度、外观品质、时令匹配、风味预估四个维度；模型推理完全本地化，单次识别耗时 <1 秒。
+1. 模型训练：使用 PyTorch 迁移学习训练 MobileNetV2 水果分类模型（Fruits-360 数据集，197 类），经迁移学习达 99% 验证准确率；训练脚本（training/train.py）与模型一同开源，导出 ONNX 后适配手机端。
+2. 端侧推理：Android 客户端集成 ONNX Runtime 实现本地离线推理，模型与标签文件打包在 assets 中，无需网络请求、无隐私外传。
+3. 视觉分析引擎：自研 HSV 颜色空间分析引擎，对成熟度与外观品质进行量化评估，弥补分类模型只能回答“是什么”而无法回答“好不好”的缺口。
+4. 时令与建议：结合时令日历数据（SeasonalCalendar）判断当季匹配度，由建议引擎（AdviceEngine）融合四个维度输出可读的购买建议。
+5. 交互实现：基于 CameraX 搭建拍照采集流程，Jetpack Compose + Material 3 实现完整界面，展示 Top-5 识别候选供用户自行判断，避免单一结果误导。
+6. 工程结构：按 ml（推理）/ analysis（建议引擎、时令数据）/ model（数据模型）/ ui（界面与主题）分层组织 Kotlin 代码，Gradle Kotlin DSL 构建，MIT 许可。
 
 相关链接：https://github.com/LancelotDDJ/FruitAdvisor
 本档案内容来自董德嘉本人真实简历。

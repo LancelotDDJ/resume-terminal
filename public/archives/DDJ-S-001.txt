@@ -7,16 +7,18 @@ SKILLS MATRIX
 技术栈：Python / Go / Kotlin / React / PyTorch / Agent
 访问范围：PUBLIC
 
-编程语言、前后端与桌面移动开发框架、机器学习框架与算法、AI 工具链与 Agent 开发工程，以及英语（IELTS 6.5）与德语（A1）语言能力。
+编程语言、前后端与桌面移动开发框架、机器学习框架与算法、AI 工具链与 Agent 开发工程，以及英语（IELTS 6.5，阅读 8.0）与德语（A1）语言能力；每项技能均有可查证的项目或开源仓库支撑。
 
 详细记录
-1. 编程语言：Python / Go / C / Kotlin / R / SQL / Shell / JavaScript / HTML / CSS。
-2. 前端与后端开发：Gin / FastAPI / Vue 3 / React / Tkinter。
-3. 桌面端与移动端开发：Electron / Capacitor / Android。
-4. 机器学习框架与算法：PyTorch / TensorFlow / CNN / ResNet / MobileNetV2 / Transformer / Attention。
-5. AI 工具链：Claude Code / Codex / OpenCode / WorkBuddy / Kimi Code——熟练运用 AI 工具提效，坚持独立判断。
-6. Agent 开发工程：Prompt Engineering / Context Engineering / Harness Engineering / RAG。
-7. 语言能力：英语 IELTS 6.5（阅读单项 8.0）；德语 Goethe-Zertifikat A1。
+1. 编程语言：Python（Voyager 数据层与 AI 层、coupang 分析管道、遗忘核仿真）、JavaScript / HTML / CSS（Voyager 前端与本站）、Kotlin（FruitAdvisor、AI 聊天 App）、Go / C / R / SQL / Shell。
+2. 前端与后端开发：React / Vue 3 / Tkinter 界面开发；Gin（Go）与 FastAPI（Python）服务端接口；Node 内置 HTTP 服务实现零依赖同步服务与静态站点。
+3. 桌面端与移动端开发：Electron（Windows 便携版打包）、Capacitor（Android 工程同步与 APK 构建）、Android 原生（Kotlin + Jetpack Compose + CameraX + ONNX Runtime）。
+4. 机器学习与算法：PyTorch（MobileNetV2 迁移学习、ResNet 对比实验）、TensorFlow、CNN / ResNet / MobileNetV2 / Transformer / Attention；模型导出 ONNX 并完成移动端部署。
+5. 数据与科研方法：意见动力学与复杂网络建模（DeGroot / 遗忘核 / WS、ER、BA 网络）、统计建模与假设检验、PCA 降维、仿真实验设计与可复现性管理（Jupyter Notebook）。
+6. AI 工具链：Claude Code / Codex / OpenCode / WorkBuddy / Kimi Code——熟练运用 AI 工具提效，同时坚持独立判断与人工校验。
+7. Agent 开发工程：Prompt Engineering（结构化与 JSON 配置化）、Context Engineering（多轮上下文与成本控制）、Harness Engineering（多 Agent 编排、工具调用与执行框架）、RAG（本地知识检索增强）。
+8. 数据工程与自动化：Playwright + asyncio 异步采集管道、浏览器指纹伪造与登录态复用、ARIA/DOM 自适应定位、断点续跑与增量同步（updatedAt + tombstone + last-write-wins）。
+9. 语言能力：英语 IELTS 6.5（阅读单项 8.0），可无障碍阅读英文技术文档与论文；德语 Goethe-Zertifikat A1，具备基础沟通能力；中文母语。
 
 相关链接：https://github.com/LancelotDDJ
 本档案内容来自董德嘉本人真实简历。

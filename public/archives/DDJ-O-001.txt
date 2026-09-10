@@ -7,12 +7,14 @@ ABOUT DONG DEJIA
 技术栈：13553039800 / LancelotDJ@outlook.com
 访问范围：FEATURED
 
-董德嘉，24 岁，现居北京。阿德莱德大学数据科学硕士在读，专注于 AI/Agent 系统工程与数据自动化，可独立完成需求分析、架构设计、代码开发直至上线的全流程工作。
+董德嘉，24 岁，现居北京。阿德莱德大学数据科学硕士在读，专注于 AI/Agent 系统工程与数据自动化：既能从零搭建多 Agent 生产流水线，也能独立完成双端应用的全链路开发，可独立承担需求分析、架构设计、编码开发直至上线的全流程工作。
 
 详细记录
 1. 联系方式：电话 13553039800，邮箱 LancelotDJ@outlook.com。
-2. 基本情况：男，24 岁，现所在地北京。
-3. 开源主页：github.com/LancelotDDJ——Voyager、Coupang 分析、FruitAdvisor 等项目源码公开。
+2. 基本情况：男，24 岁，现所在地北京；母语中文，英语工作沟通熟练（IELTS 6.5，阅读单项 8.0）。
+3. 教育背景：阿德莱德大学数据科学硕士在读（2024.09 起，专业排名前 10%）；北京信息科技大学物联网工程学士（2020.10 - 2024.06，专业排名前 10%）。
+4. 开源主页：github.com/LancelotDDJ，公开 6 个仓库——Voyager 海外旅行管理（双端应用）、coupang-review-analysis（跨境电商舆情分析）、FruitAdvisor（水果识别 Android App）、Collective-Forgetting-Opinion-Dynamics（遗忘核意见动力学仿真）、MFLAC-Decryptor（音频解密工具）、WeChatSender（桌面自动化工具）。
+5. 工程规模：Voyager 单仓约 12 MB 源码（JavaScript 4.7 MB 为主），另含 Android 原生工程（Gradle 9.1）；科研仓库含 2 个 Jupyter Notebook 与 20+ 张报告图表。
 
 相关链接：https://github.com/LancelotDDJ
 本档案内容来自董德嘉本人真实简历。

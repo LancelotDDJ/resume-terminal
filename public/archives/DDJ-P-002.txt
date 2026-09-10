@@ -3,18 +3,22 @@ FILE P-002 / Voyager 海外旅行全生命周期管理应用
 VOYAGER · TRAVEL ASSISTANT
 
 角色：独立开发 · 双端应用
-时期：2026.07 - 至今
-技术栈：Electron / Capacitor / React / DeepSeek
+时期：2026.07 - 2026.08
+技术栈：Electron / Capacitor / React / DeepSeek / RAG
 访问范围：FEATURED
 
-独立完成双端旅行管理应用的全链路开发。物理隔离的双工程架构共享 React 前端，集成 DeepSeek 大模型与本地知识检索，覆盖行前规划、旅行中监控、应急备份到行后归档的完整旅行生命周期，数据纯本地存储。
+独立完成双端旅行管理应用的全链路开发：Windows 桌面版（Electron）与 Android 版（Capacitor）物理隔离为两套独立工程、共享同一套 React 前端与本地数据。覆盖行前探索、行程规划、旅行中监控、应急备份到行后归档的完整生命周期，集成 DeepSeek 大模型与本地知识检索，数据全部本地存储、离线优先。
 
 详细记录
-1. 双端架构设计：基于 Electron 与 Capacitor 构建双端应用，共享 React 源码但物理隔离为独立工程；设计跨平台存储抽象层，统一封装 IPC、Filesystem 与 localStorage 三端数据接口，一套代码双端运行。
-2. AI 能力集成：接入 DeepSeek 大模型 API，实现对话式旅行助手、行程智能生成与多城市路线优化；设计多层健壮 JSON 解析器并配合失败自动重试，解决大模型输出不稳定问题。
-3. 本地知识检索（RAG）：设计关键词加权评分检索器，检索结果注入 AI 提示词，使行程生成与问答基于本地真实数据而非模型编造。
-4. 多模态信息导入：自研零依赖解析器提取文本；集成 tesseract.js 本地中文 OCR 与视觉模型双轨识别图片行程单，AI 结构化提取后一键生成行程。
-5. 局域网跨端同步：基于 Node 内置 HTTP 服务设计零依赖同步服务器，二维码扫码配对、updatedAt 时间戳增量同步、tombstone 删除传播与 last-write-wins 冲突解决；同步链路通过 6 项端到端测试。
+1. 双端架构设计：基于 Electron 与 Capacitor 构建双端应用，共享 src / styles / assets 与数据文件，但各版本内是完整独立副本、可独立构建与维护；设计跨平台存储抽象层，统一封装 IPC、Filesystem 与 localStorage 三端数据接口，一套代码双端运行。
+2. 数据规模：内置 98 国目的地库、557 城知识库（其中深度条目 324 城）、3985 条真实 POI、124 个地标坐标（用于地图落点），数据随使用持续自增长。
+3. AI 能力集成：接入 DeepSeek 大模型 API，实现对话式旅行助手、行程智能生成、多城市路线优化、目的地简报与批量 POI 生成；设计多层健壮 JSON 解析器并配合失败自动重试，解决大模型输出不稳定问题。未配置 Key 时，本地规则引擎离线生成行程，核心功能不受影响。
+4. 本地知识检索（RAG）：设计关键词加权评分检索器，在助手问答与行程优化时自动检索本地知识库（国家资料、城市指南、POI、个人历史行程），使生成结果基于真实数据而非模型编造，行程可直接执行。
+5. 多模态信息导入：自研零依赖解析器提取 Word / Excel / PDF / 网页文本；图片识别采用双轨策略——配置视觉模型时直接送模型识别，否则先用 tesseract.js 本地中文 OCR 转文本再交给 DeepSeek；AI 结构化提取行程信息后一键创建行程，并可勾选把识别出的地点去重合并进本地 POI 库。
+6. 局域网跨端同步：基于 Node 内置 HTTP 服务实现零依赖同步服务器，二维码扫码配对（配对令牌一次性生成，关闭服务即失效）、updatedAt 时间戳增量同步、tombstone 标记传播删除与 last-write-wins 冲突解决；数据仅在同一 WiFi 的两台设备间传输，不经过任何云端。
+7. 旅行中能力：三态打卡、记账（含外币换算）、旅行日志、实时天气/汇率/航班信息；我的旅行足迹统计国家/城市数、累计花费与旅行天数，并生成时间线。
+8. 数据存储与迁移：Windows 版数据存于 %APPDATA%/voyager/voyager-data/（trips / expenses / logs / prefs / poi 等 JSON 文件），Android 版存于应用内部 DATA/ 目录，格式完全一致，可跨平台导出导入迁移；提供旅行报告导出（Markdown / PDF / JSON）。
+9. 工程细节：桌面版打包为便携版 exe（release/Voyager-portable/Voyager.exe），Android 版经 Capacitor 同步至完整 Android 工程（Gradle 9.1 / AGP 9.0、minSdk 24 / targetSdk 34、appId com.voyager.travel）后构建 APK；根目录提供共享文件同步脚本（sync-shared.js，支持双向同步与 --dry-run 预览）保证两版共享文件一致。
 
 相关链接：https://github.com/LancelotDDJ/Voyager-the-Travel-Assistant
 本档案内容来自董德嘉本人真实简历。

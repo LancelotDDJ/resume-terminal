@@ -4,15 +4,17 @@ COLOPHON & CREDITS
 
 角色：个人档案 · 本站
 时期：2026.09
-技术栈：MIT / MiSans / Three.js
+技术栈：TypeScript / Three.js / Vite
 访问范围：PUBLIC
 
-本站为静态个人简历终端：键盘 ←→ 切换分类、↑↓ 翻阅档案、Enter 读取、/ 检索。界面工程基于 MIT 许可的开源项目改造，已去除全部第三方 IP 元素。
+本站为静态个人简历终端：三维档案阵列以六列循环滚动呈现 15 份档案，键盘 ←→ 切换分类、↑↓ 翻阅档案、Enter 读取、/ 检索、Esc 返回；界面工程基于 MIT 许可的开源项目改造，已去除全部第三方 IP 元素。
 
 详细记录
-1. 界面工程：基于 LBEILC/RhineLabUI（MIT License, Copyright (c) 2026 LBEILC）改造，保留其工程架构与动效，去除开场动画与全部《明日方舟》相关 IP 元素。
-2. 字体：MiSans（小米官方字体，保留其许可与署名）；Three.js、Rolling 等开源依赖的许可文件随站分发。
-3. 内容：全部档案内容来自董德嘉本人真实简历，按个人简介 / 教育 / 实习 / 项目 / 科研 / 技能六类组织，每类内按时间由新到旧编号。
+1. 界面工程：基于 LBEILC/RhineLabUI（MIT License, Copyright (c) 2026 LBEILC）改造，保留其三维阵列架构、解密动效、画质分级与音频系统，去除开场动画与全部《明日方舟》相关 IP 元素。
+2. 技术栈：TypeScript + Three.js 0.183 + Vite 7，无框架、无后端、无 API Key，纯静态部署（dist 约 12 MB）。
+3. 内容与代码分离：15 份档案全部维护在单一 JSON 数据文件中，由校验脚本保证编号、分类与字段一致性，并自动导出为可下载的 TXT 档案。
+4. 工程细节：字体按站点字符集子集化（MiSans 4 字重 19.7 MB → 526 KB，缩减 97%）；11 项自动化校验 + 监听式自动构建保证产物始终与源码一致。
+5. 字体与依赖：MiSans（小米官方字体，保留其许可与署名）；Three.js、Rolling Number 等开源依赖的许可文件随站分发。
 
 相关链接：https://github.com/LBEILC/RhineLabUI
 本档案内容来自董德嘉本人真实简历。
