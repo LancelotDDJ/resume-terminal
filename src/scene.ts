@@ -12,7 +12,7 @@ import { applyTextureQuality, resizeQuality } from "./quality-renderer";
 import { CardAppearance } from "./appearance";
 import { configureInternalOptics } from "./internal-optics";
 import { DecryptionController } from "./decryption";
-import { archiveColumns, fileAtSlot, fileLocation, records } from "./data";
+import { archiveColumns, categoryEn, fileAtSlot, fileLocation, records } from "./data";
 import {
   cellKey,
   sameCell,
@@ -611,7 +611,7 @@ export class ArchiveScene {
     c.fillRect(12, 12, 1000, 6);
     c.fillRect(12, 419, 1000, 3);
     c.font = "bold 81px MiSans";
-    c.fillText("DONG DEJIA", 22, 116);
+    c.fillText(categoryEn[record.category] ?? "DONG DEJIA", 22, 116);
     // Show the actual file id and title, matching the archive callout.
     c.font = "32px MiSans";
     c.fillStyle = "#878476";

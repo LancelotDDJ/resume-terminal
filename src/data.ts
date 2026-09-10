@@ -18,6 +18,17 @@ export const records: ArchiveRecord[] = content.records;
 export const categories = ["全部档案", ...content.categories];
 export const archiveColumns = content.columns;
 
+// English labels for the six categories (letter prefix in parentheses), used
+// wherever an English category name is shown, e.g. the 3D cassette label.
+export const categoryEn: Record<string, string> = {
+  个人简介: "PROFILE",
+  教育经历: "EDUCATION",
+  实习经历: "INTERNSHIP",
+  项目经历: "PROJECT",
+  科研经历: "RESEARCH",
+  相关技能: "SKILLS",
+};
+
 export function columnFiles(lane: number) {
   return records
     .map((record, index) => ({ record, index }))
