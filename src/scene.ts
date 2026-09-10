@@ -13,6 +13,7 @@ import { CardAppearance } from "./appearance";
 import { configureInternalOptics } from "./internal-optics";
 import { DecryptionController } from "./decryption";
 import { archiveColumns, categoryEn, fileAtSlot, fileLocation, records } from "./data";
+import { buildThemeParts } from "./theme-parts";
 import {
   cellKey,
   sameCell,
@@ -55,6 +56,25 @@ const BAKED_TEXT_MESH = /^(Company label|Database label|Serial number|Informatio
 function isBakedText(object: THREE.Object3D) {
   return BAKED_TEXT_MESH.test(object.name);
 }
+
+// Surfaces forming the cassette's middle optical zone — the region replaced
+// by the per-record themed diorama (theme-parts.ts).
+const THEME_ZONE_SURFACES = [
+  "Subsurface_Optics",
+  "Optical_Film_Edge",
+  "Amber_Optical_Inlay",
+  "Optical_Film",
+];
+// Base materials the themed dioramas are allowed to use.
+const THEME_MATERIALS = new Set([
+  "Internal_Ceramic",
+  "Amber_Optical_Inlay",
+  "Subsurface_Optics",
+  "Optical_Film",
+  "Optical_Film_Edge",
+  "Optical_Edges",
+  "Champagne_Index",
+]);
 export class ArchiveScene {
   readonly renderer: THREE.WebGLRenderer;
   readonly scene = new THREE.Scene();
@@ -77,6 +97,11 @@ export class ArchiveScene {
   private selectedCell: ArchiveCell = { lane: 2, row: 12 };
   private looping = false;
   private coordinateOrigin: ArchiveCell = { lane: 0, row: 0 };
+  private themeMats = new Map<string, THREE.Material>();
+  private themeZoneOriginal: THREE.Mesh[] = [];
+  private themedMeshes: THREE.Mesh[] = [];
+  private labelMesh?: THREE.Mesh;
+  private themeRecordId: string | null = null;
   private lift = { value: 0, velocity: 0 };
   private rail = { value: 0, velocity: 0 };
   private shoulder = { value: 12, velocity: 0 };
@@ -272,6 +297,11 @@ export class ArchiveScene {
       selectedMesh.castShadow = name === "Optical_Diffuser";
       selectedMesh.receiveShadow = true;
       this.model.add(selectedMesh);
+      // The middle optical zone (original refractive rings + optical core) is
+      // replaceable per record by the themed diorama in theme-parts.ts.
+      if (THEME_ZONE_SURFACES.includes(name))
+        this.themeZoneOriginal.push(selectedMesh);
+      if (THEME_MATERIALS.has(name)) this.themeMats.set(name, mat);
       // Only the shell, edge and fasteners remain visible within tightly packed rows.
       // Keep sub-millimetre optical/typographic geometry on the extracted cassette.
       if (
@@ -354,16 +384,18 @@ export class ArchiveScene {
     );
     label.position.set(-1.36, 3.04, 0.255);
     this.model.add(label);
+    this.labelMesh = label;
     this.appearance.prepare(this.model);
     this.appearance.apply(this.model, 0);
     this.drawLabel(0);
     this.scene.add(this.model);
     this.model.position.copy(this.positions[this.selectedSlot]);
     this.loaded = true;
+    this.applyTheme(0);
   }
 
   private assemblyTemplate?: Promise<THREE.Group>;
-  async createAssemblyModel() {
+  async createAssemblyModel(recordId = "") {
     this.assemblyTemplate ??= new GLTFLoader()
       .loadAsync(`${import.meta.env.BASE_URL}assets/archive-assembly.glb`)
       .then((gltf) => {
@@ -377,8 +409,18 @@ export class ArchiveScene {
     const template = await this.assemblyTemplate;
     const model = new THREE.Group();
     const meshes: THREE.Mesh[] = [];
+    const build = recordId
+      ? buildThemeParts(recordId, (name) => {
+          const base = this.themeMats.get(name);
+          return base ? base.clone() : new THREE.MeshStandardMaterial();
+        })
+      : null;
     template.traverse((object) => {
       if (!(object instanceof THREE.Mesh) || isBakedText(object)) return;
+      const part = object.userData.assemblyPart;
+      // Themed records swap the middle optical zone for their own diorama.
+      if (build && (part === "optical-lenses" || part === "optical-core"))
+        return;
       const name = (object.material as THREE.Material).name.replace(
         /\.\d+$/,
         "",
@@ -388,10 +430,15 @@ export class ArchiveScene {
         object.material,
       );
       mesh.userData.surface = name;
-      mesh.userData.assemblyPart = object.userData.assemblyPart;
+      mesh.userData.assemblyPart = part;
       model.add(mesh);
       meshes.push(mesh);
     });
+    if (build)
+      for (const mesh of build.meshes) {
+        model.add(mesh);
+        meshes.push(mesh);
+      }
     this.appearance.prepare(model);
     this.appearance.apply(model, 1);
     this.appearance.setClarity(model, this.decryption.clarity);
@@ -596,6 +643,39 @@ export class ArchiveScene {
     } else this.emitPulse(cell);
     this.targetRotation = 0;
     this.drawLabel(index);
+    this.applyTheme(index);
+  }
+
+  // Swap the cassette's middle optical zone for the record's themed diorama.
+  // Unthemed records keep the original refractive rings and optical core.
+  private applyTheme(index: number) {
+    const id = records[index].id;
+    if (id === this.themeRecordId || !this.loaded) return;
+    this.themeRecordId = id;
+    for (const mesh of this.themedMeshes) {
+      this.model.remove(mesh);
+      mesh.geometry.dispose();
+      (mesh.material as THREE.Material).dispose();
+    }
+    this.themedMeshes = [];
+    const build = buildThemeParts(id, (name) => {
+      const base = this.themeMats.get(name);
+      return base ? base.clone() : new THREE.MeshStandardMaterial();
+    });
+    for (const mesh of this.themeZoneOriginal) mesh.visible = !build;
+    if (!build) return;
+    const holder = new THREE.Group();
+    for (const mesh of build.meshes) holder.add(mesh);
+    this.appearance.prepare(holder);
+    const label = this.labelMesh;
+    if (label) this.model.remove(label);
+    for (const mesh of build.meshes) {
+      this.model.add(mesh);
+      this.themedMeshes.push(mesh);
+    }
+    if (label) this.model.add(label);
+    this.appearance.apply(this.model, ease(this.lift.value / 0.4));
+    this.appearance.setClarity(this.model, this.decryption.clarity);
   }
   private emitPulse(cell: ArchiveCell) {
     this.pulses.push({ ...cell, time: this.clock });

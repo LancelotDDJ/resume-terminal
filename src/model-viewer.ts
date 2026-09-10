@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { createArchiveLighting } from "./archive-lighting";
 import { damp } from "./motion";
+import { themeLabels } from "./theme-parts";
 import { ViewerCameraMotion } from "./viewer-camera";
 import { normalizeQuality, type RenderQuality } from "./render-quality";
 import {
@@ -81,7 +82,7 @@ export class ModelViewer {
         <span class="viewer-index">360<span>°</span></span>
       </header>
       <div class="viewer-surface" role="group" aria-label="玻璃模式"><button data-viewer="clear" aria-pressed="true">清晰</button><button data-viewer="frosted" aria-pressed="false">磨砂</button></div>
-      <aside class="viewer-parts" aria-label="模型装配结构"><div>ASSEMBLY / 装配结构</div>${PARTS.map((p, i) => `<p><span>${String(i + 1).padStart(2, "0")}</span><strong>${p.label}</strong><small>${p.en}</small></p>`).join("")}</aside>
+      <aside class="viewer-parts" aria-label="模型装配结构"></aside>
       <div class="viewer-loading" role="status"><span>正在载入模型…</span><button data-viewer="retry" hidden>重新载入 ↗</button></div>
       <footer class="viewer-footer">
         <div class="viewer-help"><span>拖动旋转</span><span>↑ ↓ ← → 平移</span><span>滚轮缩放</span></div>
@@ -190,11 +191,32 @@ export class ModelViewer {
     this.setSurface(true);
     this.lastTime = 0;
     this.root.dataset.exploded = "false";
+    this.renderParts(id);
     this.resetView(false);
     this.resize();
     this.renderer.domElement.focus({ preventScroll: true });
     this.enter();
     void this.load();
+  }
+
+  // The middle two parts are themed per record; the shell rows stay fixed.
+  private renderParts(id: string) {
+    const theme = themeLabels(id);
+    const parts = PARTS.map((p) => {
+      if (theme && p.id === "optical-lenses")
+        return { ...p, label: theme.lenses.label, en: theme.lenses.en };
+      if (theme && p.id === "optical-core")
+        return { ...p, label: theme.core.label, en: theme.core.en };
+      return p;
+    });
+    this.root.querySelector(".viewer-parts")!.innerHTML =
+      `<div>ASSEMBLY / 装配结构</div>` +
+      parts
+        .map(
+          (p, i) =>
+            `<p><span>${String(i + 1).padStart(2, "0")}</span><strong>${p.label}</strong><small>${p.en}</small></p>`,
+        )
+        .join("");
   }
 
   private async load() {
