@@ -235,10 +235,15 @@ let ticksLane = -1;
 function renderFileTicks(lane: number) {
   if (lane === ticksLane) return;
   ticksLane = lane;
-  $("#file-ticks").innerHTML = columnFiles(lane)
+  const files = columnFiles(lane);
+  const container = $("#file-ticks");
+  // 14px button + 12px gap per file. An explicit width lets CSS ease the
+  // strip — and the next-arrow beside it — when the count changes per column.
+  container.style.width = `${files.length * 26 - 12}px`;
+  container.innerHTML = files
     .map((index) => `<button data-select="${index}"></button>`)
     .join("");
-  fileTicks = [...$("#file-ticks").querySelectorAll<HTMLButtonElement>("button")];
+  fileTicks = [...container.querySelectorAll<HTMLButtonElement>("button")];
 }
 renderFileTicks(fileLocation(selected).lane);
 

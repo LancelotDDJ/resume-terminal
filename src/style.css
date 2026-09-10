@@ -612,11 +612,18 @@ button {
   display: flex;
   align-items: center;
   gap: 12px;
+  overflow: hidden;
+  /* Columns hold 1-8 files, so the strip width — and the next-arrow's
+     horizontal position — changes per category. Ease that shift instead of
+     letting the arrow snap. */
+  transition: width 0.3s ease-out;
 }
 .file-ticks button {
   width: 14px;
+  flex: 0 0 14px;
   height: 40px;
   position: relative;
+  animation: tick-in 0.28s ease-out backwards;
 }
 .file-ticks button:before {
   content: "";
@@ -635,6 +642,16 @@ button {
   height: 33px;
   top: 3px;
   background: #24261f;
+}
+@keyframes tick-in {
+  from {
+    opacity: 0;
+    transform: scaleY(0.2);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
 }
 .file-ticks button:hover:before {
   height: 24px;
