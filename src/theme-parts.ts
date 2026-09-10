@@ -9,6 +9,7 @@
 // Champagne_Index), so the themed parts morph with the same appearance
 // system and read as one object with the case.
 import * as THREE from "three";
+import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
 
 export interface ThemePartLabels {
   label: string;
@@ -198,6 +199,22 @@ function droplet(radius: number, height: number): THREE.LatheGeometry {
   g.rotateX(Math.PI / 2);
   return g;
 }
+// A rounded link between two points: capsule bar with hemispherical caps,
+// so no connection in a network ever ends in a flat cut.
+function capsule2D(
+  x1: number,
+  y1: number,
+  x2: number,
+  y2: number,
+  radius: number,
+): THREE.CapsuleGeometry {
+  const length = Math.hypot(x2 - x1, y2 - y1);
+  const g = new THREE.CapsuleGeometry(radius, Math.max(0.001, length - radius * 2), 4, 10);
+  g.rotateZ(Math.PI / 2 - Math.atan2(y2 - y1, x2 - x1));
+  g.translate((x1 + x2) / 2, (y1 + y2) / 2, 0);
+  return g;
+}
+
 // A lathed apple: dimpled crown, full hips, no straight lines anywhere.
 function appleForm(radius: number, height: number): THREE.LatheGeometry {
   const pts = [
@@ -231,8 +248,9 @@ export function buildCaseFrame(mat: MatFactory): THREE.Mesh {
 }
 
 // ---------------------------------------------------------------- R-001 ----
-// Forgetting-kernel thesis as ONE icon: a soft brain silhouette with the
-// small amber kernel nested at its centre — the thesis's own metaphor.
+// Forgetting-kernel thesis: a dense node mesh filling the zone — the design
+// that already proved readable — with every link as a rounded capsule and the
+// amber kernel droplet radiating at the centre.
 function buildNetwork(mat: MatFactory): THREE.Mesh[] {
   const meshes: THREE.Mesh[] = [];
   const add = (
@@ -248,30 +266,58 @@ function buildNetwork(mat: MatFactory): THREE.Mesh[] {
     meshes.push(mesh);
   };
 
-  // Brain: two crown lobes flowing into a tapered stem, one continuous outline.
-  const brain = new THREE.Shape();
-  brain.moveTo(0, -0.42);
-  brain.bezierCurveTo(-0.52, -0.4, -0.64, -0.06, -0.53, 0.12);
-  brain.bezierCurveTo(-0.6, 0.32, -0.42, 0.46, -0.25, 0.43);
-  brain.bezierCurveTo(-0.14, 0.52, -0.04, 0.47, 0, 0.4);
-  brain.bezierCurveTo(0.04, 0.47, 0.14, 0.52, 0.25, 0.43);
-  brain.bezierCurveTo(0.42, 0.46, 0.6, 0.32, 0.53, 0.12);
-  brain.bezierCurveTo(0.64, -0.06, 0.52, -0.4, 0, -0.42);
+  const outer: [number, number][] = [];
+  for (let i = 0; i < 10; i++) {
+    const a = (i / 10) * Math.PI * 2 + 0.16;
+    outer.push([C.x + Math.cos(a) * 1.3, C.y + Math.sin(a) * 0.88]);
+  }
+  const inner: [number, number][] = [];
+  for (let i = 0; i < 4; i++) {
+    const a = (i / 4) * Math.PI * 2 + Math.PI / 4;
+    inner.push([C.x + Math.cos(a) * 0.6, C.y + Math.sin(a) * 0.4]);
+  }
+  const all = [...outer, ...inner];
+  const links: [number, number][] = [];
+  for (let i = 0; i < 10; i++) {
+    links.push([i, (i + 1) % 10]);
+    if (i % 2 === 0) links.push([i, (i + 3) % 10]);
+  }
+  for (let i = 0; i < 4; i++) {
+    links.push([10 + i, 10 + ((i + 1) % 4)]);
+    links.push([10 + i, (i * 2 + 1) % 10]);
+  }
+  for (const [a, b] of links) {
+    add(
+      capsule2D(all[a][0], all[a][1], all[b][0], all[b][1], 0.018),
+      "Optical_Film_Edge",
+      "optical-core",
+      0,
+      0,
+      0.055,
+    );
+  }
+  outer.forEach(([x, y], i) => {
+    add(pebble(0.06, 0.5), i % 3 === 0 ? "Champagne_Index" : "Subsurface_Optics", "optical-core", x, y, 0.07);
+  });
+  inner.forEach(([x, y]) => {
+    add(pebble(0.05, 0.5), "Subsurface_Optics", "optical-core", x, y, 0.07);
+  });
+  // The kernel: a smooth amber droplet with a soft halo at the mesh's centre.
+  add(droplet(0.105, 0.26), "Amber_Optical_Inlay", "optical-core", C.x, C.y, 0.03);
   add(
-    relief(brain, 0.07, 0.045),
-    "Subsurface_Optics",
-    "optical-core",
+    new THREE.TorusGeometry(0.19, 0.016, 12, 48),
+    "Amber_Optical_Inlay",
+    "optical-lenses",
     C.x,
-    C.y + 0.02,
-    0.04,
+    C.y,
+    0.1,
   );
-  // The kernel: a small amber droplet resting in the brain's crown valley.
-  add(droplet(0.085, 0.2), "Amber_Optical_Inlay", "optical-lenses", C.x, C.y - 0.02, 0.1);
   return meshes;
 }
 
 // ---------------------------------------------------------------- P-002 ----
-// Voyager as ONE icon: a plump location pin, nothing else.
+// Voyager as one unmistakable travel object: a plump rounded suitcase with a
+// soft handle, two straps and little wheels. Fully rounded, no corners.
 function buildVoyage(mat: MatFactory): ThemeBuild["meshes"] {
   const meshes: THREE.Mesh[] = [];
   const add = (
@@ -281,24 +327,49 @@ function buildVoyage(mat: MatFactory): ThemeBuild["meshes"] {
     x: number,
     y: number,
     z: number,
+    rz = 0,
   ) => {
     const mesh = tag(new THREE.Mesh(geometry, mat(material)), material, part);
     mesh.position.set(x, y, z);
+    mesh.rotation.z = rz;
     meshes.push(mesh);
   };
 
-  const pin = new THREE.Shape();
-  pin.absarc(0, 0.22, 0.44, Math.PI * 0.78, Math.PI * 2.22, false);
-  pin.lineTo(0, -0.56);
-  pin.closePath();
-  add(relief(pin, 0.08, 0.045), "Amber_Optical_Inlay", "optical-core", C.x, C.y - 0.02, 0.04);
-  // The pin's inset, a calm ivory dot.
-  add(pebble(0.15, 0.55), "Internal_Ceramic", "optical-lenses", C.x, C.y + 0.2, 0.12);
+  const sx = C.x,
+    sy = C.y - 0.08;
+  // Body: one big soft-edged slab.
+  add(
+    new RoundedBoxGeometry(1.2, 0.86, 0.3, 5, 0.14),
+    "Amber_Optical_Inlay",
+    "optical-core",
+    sx,
+    sy,
+    0.05,
+  );
+  // Two strap bands hugging the body.
+  for (const offset of [-0.32, 0.32]) {
+    add(
+      new RoundedBoxGeometry(0.1, 0.9, 0.32, 4, 0.045),
+      "Champagne_Index",
+      "optical-lenses",
+      sx + offset,
+      sy,
+      0.06,
+    );
+  }
+  // Soft arc handle rising from the top edge.
+  const handle = new THREE.TorusGeometry(0.2, 0.045, 12, 28, Math.PI);
+  handle.rotateZ(0);
+  add(handle, "Champagne_Index", "optical-lenses", sx, sy + 0.44, 0.07);
+  // Two little wheels peeking below the body.
+  for (const offset of [-0.38, 0.38]) {
+    add(pebble(0.075, 0.6), "Subsurface_Optics", "optical-core", sx + offset, sy - 0.5, 0.07);
+  }
   return meshes;
 }
 
 // ---------------------------------------------------------------- P-004 ----
-// FruitAdvisor as ONE icon: a lathed apple with its stem and leaf, nothing else.
+// FruitAdvisor: the lathed apple stays — it was already the right read.
 function buildFruit(mat: MatFactory): ThemeBuild["meshes"] {
   const meshes: THREE.Mesh[] = [];
   const add = (
@@ -339,7 +410,9 @@ function buildFruit(mat: MatFactory): ThemeBuild["meshes"] {
 }
 
 // ---------------------------------------------------------------- I-001 ----
-// Hanvon internship as ONE icon: a soft chat bubble mid-typing, nothing else.
+// Hanvon internship: the agent matrix — a plump amber hub feeding six pebble
+// agents through rounded tendrils, plus a few capsule cross-links. This is
+// the Agent orchestration itself, drawn as one connected organism.
 function buildAgent(mat: MatFactory): ThemeBuild["meshes"] {
   const meshes: THREE.Mesh[] = [];
   const add = (
@@ -349,61 +422,87 @@ function buildAgent(mat: MatFactory): ThemeBuild["meshes"] {
     x: number,
     y: number,
     z: number,
+    rz = 0,
   ) => {
     const mesh = tag(new THREE.Mesh(geometry, mat(material)), material, part);
     mesh.position.set(x, y, z);
+    mesh.rotation.z = rz;
     meshes.push(mesh);
   };
 
-  // Rounded bubble slab with a soft tail tucked underneath.
-  const bubble = new THREE.Shape();
-  const w = 1.34,
-    h = 0.92,
-    r = 0.26;
-  const x = -w / 2,
-    y = -h / 2;
-  bubble.moveTo(x + r, y);
-  bubble.lineTo(x + w - r, y);
-  bubble.absarc(x + w - r, y + r, r, -Math.PI / 2, 0);
-  bubble.lineTo(x + w, y + h - r);
-  bubble.absarc(x + w - r, y + h - r, r, 0, Math.PI / 2);
-  bubble.lineTo(x + w * 0.44, y + h);
-  bubble.lineTo(x + w * 0.3, y + h - 0.26);
-  bubble.lineTo(x + r, y + h);
-  bubble.absarc(x + r, y + h - r, r, Math.PI / 2, Math.PI);
-  bubble.lineTo(x, y + r);
-  bubble.absarc(x + r, y + r, r, Math.PI, Math.PI * 1.5);
-  add(
-    relief(bubble, 0.07, 0.04),
-    "Subsurface_Optics",
-    "optical-core",
-    C.x,
-    C.y + 0.1,
-    0.04,
-  );
-  for (let i = 0; i < 3; i++) {
-    add(pebble(0.075, 0.55), "Amber_Optical_Inlay", "optical-lenses", C.x - 0.26 + i * 0.26, C.y + 0.16, 0.12);
+  const hx = C.x,
+    hy = C.y;
+  // Hub: a plump amber heart.
+  const hubGeo = new THREE.SphereGeometry(0.27, 28, 20);
+  hubGeo.scale(1, 1, 0.55);
+  add(hubGeo, "Amber_Optical_Inlay", "optical-core", hx, hy, 0.06);
+
+  const kids: [number, number][] = [];
+  for (let i = 0; i < 6; i++) {
+    const a = (i / 6) * Math.PI * 2 + Math.PI / 6;
+    kids.push([hx + Math.cos(a) * 1.16, hy + Math.sin(a) * 0.8]);
   }
+  kids.forEach(([kx, ky], i) => {
+    // Rounded tendril from the hub's edge straight into each pebble.
+    const ux = Math.cos((i / 6) * Math.PI * 2 + Math.PI / 6),
+      uy = Math.sin((i / 6) * Math.PI * 2 + Math.PI / 6);
+    add(
+      capsule2D(hx + ux * 0.2, hy + uy * 0.2, kx - ux * 0.07, ky - uy * 0.07, 0.02),
+      "Optical_Film_Edge",
+      "optical-core",
+      0,
+      0,
+      0.055,
+    );
+    add(
+      pebble(0.085, 0.5),
+      i % 2 ? "Champagne_Index" : "Subsurface_Optics",
+      "optical-core",
+      kx,
+      ky,
+      0.07,
+    );
+  });
+  // A few capsule cross-links so the ring reads as one team.
+  for (const [a, b] of [[0, 2], [2, 4], [4, 0]] as const) {
+    add(
+      capsule2D(kids[a][0], kids[a][1], kids[b][0], kids[b][1], 0.014),
+      "Optical_Film_Edge",
+      "optical-core",
+      0,
+      0,
+      0.045,
+    );
+  }
+  // Soft halo ring circling the hub.
+  add(
+    new THREE.TorusGeometry(0.38, 0.016, 12, 48),
+    "Champagne_Index",
+    "optical-lenses",
+    hx,
+    hy,
+    0.1,
+  );
   return meshes;
 }
 
 // ------------------------------------------------------------ registry ----
 const LABELS: Partial<Record<string, ThemeBuild["labels"]>> = {
   "R-001": {
-    lenses: { label: "遗忘内核", en: "FORGETTING KERNEL" },
-    core: { label: "大脑剪影", en: "BRAIN FORM" },
+    lenses: { label: "内核光晕", en: "KERNEL HALO" },
+    core: { label: "网络图谱", en: "NETWORK ATLAS" },
   },
   "P-002": {
-    lenses: { label: "钉孔嵌珠", en: "PIN INSET" },
-    core: { label: "定位钉", en: "MAP PIN" },
+    lenses: { label: "提手与饰带", en: "HANDLE & STRAPS" },
+    core: { label: "旅行箱", en: "SUITCASE" },
   },
   "P-004": {
     lenses: { label: "梗与叶", en: "STEM & LEAF" },
     core: { label: "苹果", en: "APPLE" },
   },
   "I-001": {
-    lenses: { label: "输入中", en: "TYPING" },
-    core: { label: "对话气泡", en: "CHAT BUBBLE" },
+    lenses: { label: "矩阵光环", en: "MATRIX HALO" },
+    core: { label: "智能体矩阵", en: "AGENT MATRIX" },
   },
 };
 
