@@ -177,6 +177,9 @@ button {
   align-items: center;
   gap: 5px;
   line-height: 24px;
+  /* A decorative watermark must never swallow clicks meant for the interface
+     underneath it (detail actions, export link, footer controls). */
+  pointer-events: none;
 }
 .powered b {
   font-weight: 750;
@@ -1588,6 +1591,11 @@ button {
   opacity: 1;
 }
 [data-mode="detail"] .powered {
+  /* The reading panel owns the bottom-right corner: a long record would run
+     under the watermark. Move the mark to the free bottom-left lane so it
+     never covers the footnote, the action buttons or their clicks. */
+  right: auto;
+  left: 59px;
   bottom: 108px;
 }
 [data-mode="detail"] .archive-ui {

@@ -742,7 +742,7 @@ document.addEventListener("keydown", (e) => {
     e.key === "Enter" &&
     (document.activeElement === document.body ||
       document.activeElement?.id === "detail-content" ||
-      ["prev", "next", "column-prev", "column-next"].includes(
+      ["prev", "next", "column-prev", "column-next", "open"].includes(
         (document.activeElement as HTMLElement)?.dataset.action ?? "",
       ) ||
       (document.activeElement as HTMLElement)?.dataset.select)
