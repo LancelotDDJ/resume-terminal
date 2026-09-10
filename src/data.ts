@@ -1,4 +1,5 @@
 import content from "../content/archives.json" with { type: "json" };
+import type { TimelineEntry } from "./gantt";
 
 export interface ArchiveRecord {
   id: string;
@@ -12,6 +13,7 @@ export interface ArchiveRecord {
   abstract: string;
   findings: string[];
   source: string;
+  timeline?: TimelineEntry[];
 }
 
 export const records: ArchiveRecord[] = content.records;

@@ -19,6 +19,18 @@
         "方向与现状：专注 AI/Agent 系统工程与数据自动化，实习于汉王科技研发部（2026.05 - 08，详见 I-001）；独立交付双端应用、自动化分析系统、移动端推理应用等项目（详见 P-001 ~ P-006）。",
         "开源作品：6 个公开仓库——Voyager 海外旅行管理（双端应用）、coupang-review-analysis（跨境电商舆情分析）、FruitAdvisor（水果识别 Android App）、Collective-Forgetting-Opinion-Dynamics（遗忘核意见动力学仿真）、MFLAC-Decryptor（音频解密工具）、WeChatSender（桌面自动化工具）；其中 Voyager 单仓约 12 MB 源码，科研仓库含 2 个 Jupyter Notebook 与 20+ 张报告图表。"
       ],
+      "timeline": [
+        { "lane": "教育", "label": "北信科 · 物联网工程本科", "from": "2020.10", "to": "2024.06" },
+        { "lane": "教育", "label": "阿德莱德 · 数据科学硕士", "from": "2024.09", "to": "至今" },
+        { "lane": "科研", "label": "遗忘核 · 研究生毕论", "from": "2024.09", "to": "至今" },
+        { "lane": "实习", "label": "汉王科技 · AI 实习生", "from": "2026.05", "to": "2026.08" },
+        { "lane": "项目", "label": "AI 智能聊天 App", "from": "2022.11", "to": "2023.05" },
+        { "lane": "项目", "label": "物联网农场（毕设）", "from": "2024.01", "to": "2024.07" },
+        { "lane": "项目", "label": "跨境电商分析", "from": "2026.06", "to": "2026.06" },
+        { "lane": "项目", "label": "水果购买建议 App", "from": "2026.06", "to": "2026.06" },
+        { "lane": "项目", "label": "Voyager 旅行管理", "from": "2026.07", "to": "2026.08" },
+        { "lane": "项目", "label": "个人简历终端（本站）", "from": "2026.09", "to": "至今" }
+      ],
       "source": "https://github.com/LancelotDDJ"
     },
     {

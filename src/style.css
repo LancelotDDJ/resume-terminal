@@ -653,6 +653,47 @@ button {
     transform: scaleY(1);
   }
 }
+.gantt {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 12px;
+}
+.gantt text {
+  font-family: "MiSans", sans-serif;
+}
+.gantt .lane {
+  font-size: 8.5px;
+  fill: #9a9487;
+  letter-spacing: 1px;
+}
+.gantt .item {
+  font-size: 9px;
+  fill: #55524a;
+}
+.gantt .axis {
+  font-size: 8px;
+  fill: #a39c8d;
+  letter-spacing: 0.5px;
+}
+.gantt .now-label {
+  fill: #c96f1e;
+}
+.gantt .grid {
+  stroke: #e3ddcf;
+  stroke-width: 1;
+}
+.gantt .now {
+  stroke: #ed821b;
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+.gantt .bar {
+  fill: #3a3d34;
+}
+.gantt .bar.ongoing {
+  fill: #ed821b;
+}
 .file-ticks button:hover:before {
   height: 24px;
   top: 8px;
