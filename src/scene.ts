@@ -13,7 +13,7 @@ import { CardAppearance } from "./appearance";
 import { configureInternalOptics } from "./internal-optics";
 import { DecryptionController } from "./decryption";
 import { archiveColumns, categoryEn, fileAtSlot, fileLocation, records } from "./data";
-import { buildThemeParts } from "./theme-parts";
+import { buildThemeParts, buildCaseFrame } from "./theme-parts";
 import {
   cellKey,
   sameCell,
@@ -100,6 +100,8 @@ export class ArchiveScene {
   private themeMats = new Map<string, THREE.Material>();
   private themeZoneOriginal: THREE.Mesh[] = [];
   private themedMeshes: THREE.Mesh[] = [];
+  private themeEdgeMesh?: THREE.Mesh;
+  private themeFrame?: THREE.Mesh;
   private labelMesh?: THREE.Mesh;
   private themeRecordId: string | null = null;
   private lift = { value: 0, velocity: 0 };
@@ -301,6 +303,9 @@ export class ArchiveScene {
       // replaceable per record by the themed diorama in theme-parts.ts.
       if (THEME_ZONE_SURFACES.includes(name))
         this.themeZoneOriginal.push(selectedMesh);
+      // The cassette merges the inner rings into the Optical_Edges mesh that
+      // also carries the case frame; themed builds swap it for a clean frame.
+      if (name === "Optical_Edges") this.themeEdgeMesh = selectedMesh;
       if (THEME_MATERIALS.has(name)) this.themeMats.set(name, mat);
       // Only the shell, edge and fasteners remain visible within tightly packed rows.
       // Keep sub-millimetre optical/typographic geometry on the extracted cassette.
@@ -663,12 +668,27 @@ export class ArchiveScene {
       return base ? base.clone() : new THREE.MeshStandardMaterial();
     });
     for (const mesh of this.themeZoneOriginal) mesh.visible = !build;
-    if (!build) return;
+    if (this.themeEdgeMesh) this.themeEdgeMesh.visible = !build;
+    if (!build) {
+      if (this.themeFrame) this.model.remove(this.themeFrame);
+      return;
+    }
+    // The clean case frame replaces the Optical_Edges mesh whose inner rings
+    // would otherwise overlap the themed diorama (built once, then reused).
+    if (!this.themeFrame) {
+      this.themeFrame = buildCaseFrame(
+        (name) => this.themeMats.get(name)!.clone(),
+      );
+      const frameHolder = new THREE.Group();
+      frameHolder.add(this.themeFrame);
+      this.appearance.prepare(frameHolder);
+    }
     const holder = new THREE.Group();
     for (const mesh of build.meshes) holder.add(mesh);
     this.appearance.prepare(holder);
     const label = this.labelMesh;
     if (label) this.model.remove(label);
+    this.model.add(this.themeFrame);
     for (const mesh of build.meshes) {
       this.model.add(mesh);
       this.themedMeshes.push(mesh);
