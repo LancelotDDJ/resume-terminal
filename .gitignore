@@ -5,3 +5,4 @@ fonts-original/
 .DS_Store
 dist-stale/
 dist-stale/
+dist-stale*/
