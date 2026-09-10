@@ -12,7 +12,7 @@ import { applyTextureQuality, resizeQuality } from "./quality-renderer";
 import { CardAppearance } from "./appearance";
 import { configureInternalOptics } from "./internal-optics";
 import { DecryptionController } from "./decryption";
-import { archiveColumns, fileAtSlot, fileLocation } from "./data";
+import { archiveColumns, fileAtSlot, fileLocation, records } from "./data";
 import {
   cellKey,
   sameCell,
@@ -603,6 +603,7 @@ export class ArchiveScene {
   }
   private drawLabel(index: number) {
     if (!this.labelTexture) return;
+    const record = records[index];
     const c = this.labelCanvas.getContext("2d")!;
     c.fillStyle = "#e6e2d9";
     c.fillRect(0, 0, 1024, 440);
@@ -611,12 +612,18 @@ export class ArchiveScene {
     c.fillRect(12, 419, 1000, 3);
     c.font = "bold 81px MiSans";
     c.fillText("DONG DEJIA", 22, 116);
+    // Show the actual file id and title, matching the archive callout.
     c.font = "32px MiSans";
     c.fillStyle = "#878476";
-    c.fillText("PERSONAL ARCHIVE", 25, 174);
+    let titleSize = 32;
+    while (titleSize > 18 && c.measureText(record.title).width > 745) {
+      titleSize -= 2;
+      c.font = `${titleSize}px MiSans`;
+    }
+    c.fillText(record.title, 25, 174);
     c.fillStyle = "#171713";
     c.font = "bold 130px MiSans";
-    c.fillText("NO." + String(index + 1).padStart(3, "0"), 22, 360);
+    c.fillText(record.id, 22, 360);
     c.fillRect(782, 32, 221, 39);
     c.fillStyle = "#eee9de";
     c.font = "24px MiSans";
