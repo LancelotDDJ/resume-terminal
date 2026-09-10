@@ -231,9 +231,8 @@ export function buildCaseFrame(mat: MatFactory): THREE.Mesh {
 }
 
 // ---------------------------------------------------------------- R-001 ----
-// Forgetting-kernel thesis, organic reading: pebble nodes woven into one
-// continuous flowing loop, cross-linked by curved strands that dive into the
-// pebbles — a mycelium-like whole around a smooth amber kernel droplet.
+// Forgetting-kernel thesis as ONE icon: a soft brain silhouette with the
+// small amber kernel nested at its centre — the thesis's own metaphor.
 function buildNetwork(mat: MatFactory): THREE.Mesh[] {
   const meshes: THREE.Mesh[] = [];
   const add = (
@@ -249,70 +248,30 @@ function buildNetwork(mat: MatFactory): THREE.Mesh[] {
     meshes.push(mesh);
   };
 
-  const nodes: THREE.Vector3[] = [];
-  for (let i = 0; i < 8; i++) {
-    const a = (i / 8) * Math.PI * 2 + 0.3;
-    nodes.push(
-      new THREE.Vector3(
-        C.x + Math.cos(a) * 1.2,
-        C.y + Math.sin(a) * 0.82,
-        0.07,
-      ),
-    );
-  }
-  // One continuous flowing loop visiting every pebble (the connective tissue).
-  const loop = new THREE.CatmullRomCurve3(nodes, true, "centripetal", 0.9);
+  // Brain: two crown lobes flowing into a tapered stem, one continuous outline.
+  const brain = new THREE.Shape();
+  brain.moveTo(0, -0.42);
+  brain.bezierCurveTo(-0.52, -0.4, -0.64, -0.06, -0.53, 0.12);
+  brain.bezierCurveTo(-0.6, 0.32, -0.42, 0.46, -0.25, 0.43);
+  brain.bezierCurveTo(-0.14, 0.52, -0.04, 0.47, 0, 0.4);
+  brain.bezierCurveTo(0.04, 0.47, 0.14, 0.52, 0.25, 0.43);
+  brain.bezierCurveTo(0.42, 0.46, 0.6, 0.32, 0.53, 0.12);
+  brain.bezierCurveTo(0.64, -0.06, 0.52, -0.4, 0, -0.42);
   add(
-    new THREE.TubeGeometry(loop, 120, 0.024, 10, true),
-    "Optical_Film_Edge",
+    relief(brain, 0.07, 0.045),
+    "Subsurface_Optics",
     "optical-core",
-    0,
-    0,
-    0,
-  );
-  // Curved cross-links that dive into the pebbles at both ends.
-  for (const [a, b] of [[0, 3], [1, 4], [2, 5], [6, 1], [7, 2]] as const) {
-    const mid = nodes[a].clone().lerp(nodes[b], 0.5);
-    mid.x = C.x + (mid.x - C.x) * 0.35;
-    mid.y = C.y + (mid.y - C.y) * 0.35;
-    mid.z = 0.09;
-    const curve = new THREE.CatmullRomCurve3([nodes[a], mid, nodes[b]]);
-    add(
-      new THREE.TubeGeometry(curve, 40, 0.018, 8, false),
-      "Optical_Film_Edge",
-      "optical-core",
-      0,
-      0,
-      0,
-    );
-  }
-  nodes.forEach((n, i) => {
-    add(
-      pebble(0.082, 0.5),
-      i % 3 === 0 ? "Champagne_Index" : "Subsurface_Optics",
-      "optical-core",
-      n.x,
-      n.y,
-      n.z,
-    );
-  });
-  // Kernel: a smooth amber droplet rising from the mesh, with a soft halo.
-  add(droplet(0.1, 0.24), "Amber_Optical_Inlay", "optical-core", C.x, C.y, 0.03);
-  add(
-    new THREE.TorusGeometry(0.2, 0.015, 12, 48),
-    "Amber_Optical_Inlay",
-    "optical-lenses",
     C.x,
-    C.y,
-    0.1,
+    C.y + 0.02,
+    0.04,
   );
+  // The kernel: a small amber droplet resting in the brain's crown valley.
+  add(droplet(0.085, 0.2), "Amber_Optical_Inlay", "optical-lenses", C.x, C.y - 0.02, 0.1);
   return meshes;
 }
 
 // ---------------------------------------------------------------- P-002 ----
-// Voyager, organic reading: the journey is one undulating closed ribbon that
-// loops the center; a droplet pin stands on it, pebble stops ride along, and
-// a soft compass sits calmly at the middle.
+// Voyager as ONE icon: a plump location pin, nothing else.
 function buildVoyage(mat: MatFactory): ThemeBuild["meshes"] {
   const meshes: THREE.Mesh[] = [];
   const add = (
@@ -322,80 +281,24 @@ function buildVoyage(mat: MatFactory): ThemeBuild["meshes"] {
     x: number,
     y: number,
     z: number,
-    rz = 0,
   ) => {
     const mesh = tag(new THREE.Mesh(geometry, mat(material)), material, part);
     mesh.position.set(x, y, z);
-    mesh.rotation.z = rz;
     meshes.push(mesh);
   };
 
-  // Undulating journey ribbon (never a perfect circle).
-  const ribbonPts: THREE.Vector3[] = [];
-  for (let i = 0; i < 8; i++) {
-    const a = (i / 8) * Math.PI * 2;
-    const wobble = 1 + 0.09 * Math.sin(a * 3 + 0.6);
-    ribbonPts.push(
-      new THREE.Vector3(
-        C.x + Math.cos(a) * 1.0 * wobble,
-        C.y + Math.sin(a) * 0.74 * wobble,
-        0.06,
-      ),
-    );
-  }
-  const ribbon = new THREE.CatmullRomCurve3(ribbonPts, true, "centripetal", 0.9);
-  add(
-    new THREE.TubeGeometry(ribbon, 140, 0.03, 12, true),
-    "Amber_Optical_Inlay",
-    "optical-core",
-    0,
-    0,
-    0,
-  );
-  // Pebble stops resting on the ribbon.
-  for (const t of [0.16, 0.42, 0.66, 0.88]) {
-    const p = ribbon.getPoint(t);
-    add(pebble(0.05, 0.5), "Champagne_Index", "optical-core", p.x, p.y, p.z + 0.03);
-  }
-  // A droplet pin standing on the ribbon's highest point.
-  const pinAt = ribbon.getPoint(0.97);
-  add(droplet(0.09, 0.34), "Amber_Optical_Inlay", "optical-core", pinAt.x, pinAt.y, pinAt.z);
-  // Compass: two soft nested rings with a capsule needle.
-  add(
-    new THREE.TorusGeometry(0.19, 0.02, 12, 48),
-    "Champagne_Index",
-    "optical-lenses",
-    C.x,
-    C.y,
-    0.1,
-  );
-  const needle = new THREE.CapsuleGeometry(0.026, 0.2, 6, 10);
-  needle.rotateZ(-0.7);
-  add(needle, "Amber_Optical_Inlay", "optical-core", C.x, C.y, 0.085);
-  add(pebble(0.045, 0.55), "Amber_Optical_Inlay", "optical-core", C.x, C.y, 0.095);
-  // A pennant softened into a rounded leaf near the ribbon's end.
-  const flagAt = ribbon.getPoint(0.55);
-  add(pebble(0.045, 0.5), "Champagne_Index", "optical-core", flagAt.x, flagAt.y, flagAt.z + 0.02);
-  const pennant = new THREE.Shape();
-  pennant.moveTo(0, 0);
-  pennant.bezierCurveTo(0.2, 0.02, 0.22, 0.1, 0.02, 0.15);
-  pennant.bezierCurveTo(-0.04, 0.1, -0.04, 0.03, 0, 0);
-  add(
-    relief(pennant, 0.035, 0.02),
-    "Amber_Optical_Inlay",
-    "optical-core",
-    flagAt.x + 0.02,
-    flagAt.y + 0.16,
-    0.06,
-    -0.2,
-  );
+  const pin = new THREE.Shape();
+  pin.absarc(0, 0.22, 0.44, Math.PI * 0.78, Math.PI * 2.22, false);
+  pin.lineTo(0, -0.56);
+  pin.closePath();
+  add(relief(pin, 0.08, 0.045), "Amber_Optical_Inlay", "optical-core", C.x, C.y - 0.02, 0.04);
+  // The pin's inset, a calm ivory dot.
+  add(pebble(0.15, 0.55), "Internal_Ceramic", "optical-lenses", C.x, C.y + 0.2, 0.12);
   return meshes;
 }
 
 // ---------------------------------------------------------------- P-004 ----
-// FruitAdvisor, organic reading: a lathed apple at the center, wrapped by a
-// soft rubber-band frame; a flowing scan arc sweeps over the fruit while a
-// smooth pebble camera watches through a curved signal strand.
+// FruitAdvisor as ONE icon: a lathed apple with its stem and leaf, nothing else.
 function buildFruit(mat: MatFactory): ThemeBuild["meshes"] {
   const meshes: THREE.Mesh[] = [];
   const add = (
@@ -413,102 +316,30 @@ function buildFruit(mat: MatFactory): ThemeBuild["meshes"] {
     meshes.push(mesh);
   };
 
-  const ax = C.x - 0.18,
-    ay = C.y + 0.02;
-  // Lathed apple: dimpled crown, full hips, no straight lines anywhere.
-  add(appleForm(0.3, 0.42), "Amber_Optical_Inlay", "optical-core", ax, ay, 0.03);
-  // Stem: a short curved tube bending over the dimple.
+  const ax = C.x,
+    ay = C.y - 0.1;
+  add(appleForm(0.46, 0.6), "Amber_Optical_Inlay", "optical-core", ax, ay, 0.03);
   const stem = new THREE.CatmullRomCurve3([
-    new THREE.Vector3(ax, ay + 0.4, 0.08),
-    new THREE.Vector3(ax + 0.04, ay + 0.48, 0.09),
-    new THREE.Vector3(ax + 0.1, ay + 0.5, 0.09),
+    new THREE.Vector3(ax, ay + 0.55, 0.08),
+    new THREE.Vector3(ax + 0.05, ay + 0.66, 0.09),
+    new THREE.Vector3(ax + 0.13, ay + 0.68, 0.09),
   ]);
   add(
-    new THREE.TubeGeometry(stem, 16, 0.018, 8, false),
+    new THREE.TubeGeometry(stem, 18, 0.026, 8, false),
     "Champagne_Index",
-    "optical-core",
+    "optical-lenses",
     0,
     0,
     0,
   );
-  const leafGeo = new THREE.SphereGeometry(0.09, 20, 14);
+  const leafGeo = new THREE.SphereGeometry(0.13, 20, 14);
   leafGeo.scale(1, 0.42, 0.3);
-  add(leafGeo, "Champagne_Index", "optical-core", ax + 0.15, ay + 0.47, 0.09);
-
-  // Soft rubber-band frame hugging the apple (rounded rectangle as a tube).
-  const fw = 0.92,
-    fh = 1.14,
-    fr = 0.3;
-  const framePts: THREE.Vector3[] = [];
-  const arcSteps = 6;
-  const corner = (cx: number, cy: number, start: number) => {
-    for (let i = 0; i <= arcSteps; i++) {
-      const a = start + (i / arcSteps) * (Math.PI / 2);
-      framePts.push(new THREE.Vector3(cx + Math.cos(a) * fr, cy + Math.sin(a) * fr, 0.1));
-    }
-  };
-  corner(ax + fw / 2 - fr, ay + fh / 2 - fr, 0);
-  corner(ax - fw / 2 + fr, ay + fh / 2 - fr, Math.PI / 2);
-  corner(ax - fw / 2 + fr, ay - fh / 2 + fr, Math.PI);
-  corner(ax + fw / 2 - fr, ay - fh / 2 + fr, -Math.PI / 2);
-  const frameCurve = new THREE.CatmullRomCurve3(framePts, true, "centripetal", 0.8);
-  add(
-    new THREE.TubeGeometry(frameCurve, 120, 0.024, 10, true),
-    "Subsurface_Optics",
-    "optical-lenses",
-    0,
-    0,
-    0,
-  );
-  // Scan arc sweeping over the apple's shoulders.
-  const scan = new THREE.CatmullRomCurve3([
-    new THREE.Vector3(ax - 0.52, ay - 0.02, 0.11),
-    new THREE.Vector3(ax, ay + 0.16, 0.13),
-    new THREE.Vector3(ax + 0.52, ay - 0.02, 0.11),
-  ]);
-  add(
-    new THREE.TubeGeometry(scan, 32, 0.028, 10, false),
-    "Amber_Optical_Inlay",
-    "optical-core",
-    0,
-    0,
-    0,
-  );
-  // Pebble camera with a soft lens, linked by a curved signal strand.
-  const camX = C.x + 0.95,
-    camY = C.y - 0.6;
-  const camBody = new THREE.SphereGeometry(0.24, 24, 16);
-  camBody.scale(1.35, 0.9, 0.42);
-  add(camBody, "Optical_Edges", "optical-core", camX, camY, 0.05);
-  add(
-    new THREE.TorusGeometry(0.11, 0.02, 12, 36),
-    "Subsurface_Optics",
-    "optical-lenses",
-    camX,
-    camY,
-    0.11,
-  );
-  add(pebble(0.04, 0.5), "Amber_Optical_Inlay", "optical-core", camX, camY, 0.12);
-  const signal = new THREE.CatmullRomCurve3([
-    new THREE.Vector3(camX - 0.2, camY + 0.1, 0.08),
-    new THREE.Vector3(camX - 0.5, camY + 0.42, 0.1),
-    new THREE.Vector3(ax + fw / 2 - 0.04, ay - fh / 2 + 0.06, 0.1),
-  ]);
-  add(
-    new THREE.TubeGeometry(signal, 32, 0.014, 8, false),
-    "Champagne_Index",
-    "optical-core",
-    0,
-    0,
-    0,
-  );
+  add(leafGeo, "Champagne_Index", "optical-lenses", ax + 0.2, ay + 0.63, 0.09);
   return meshes;
 }
 
 // ---------------------------------------------------------------- I-001 ----
-// Hanvon internship, organic reading: a plump amber heart (the hub) breathing
-// on a soft ring with six pebble agents, all fed by flowing tendrils; a cloud
-// bubble floats on the ring, tethered by one curved signal strand.
+// Hanvon internship as ONE icon: a soft chat bubble mid-typing, nothing else.
 function buildAgent(mat: MatFactory): ThemeBuild["meshes"] {
   const meshes: THREE.Mesh[] = [];
   const add = (
@@ -518,118 +349,61 @@ function buildAgent(mat: MatFactory): ThemeBuild["meshes"] {
     x: number,
     y: number,
     z: number,
-    rz = 0,
   ) => {
     const mesh = tag(new THREE.Mesh(geometry, mat(material)), material, part);
     mesh.position.set(x, y, z);
-    mesh.rotation.z = rz;
     meshes.push(mesh);
   };
 
-  const hx = C.x - 0.1,
-    hy = C.y - 0.02;
-  // Soft shared ring.
-  const ringPts: THREE.Vector3[] = [];
-  for (let i = 0; i < 8; i++) {
-    const a = (i / 8) * Math.PI * 2 + 0.2;
-    const wobble = 1 + 0.05 * Math.sin(a * 2);
-    ringPts.push(new THREE.Vector3(hx + Math.cos(a) * 1.08 * wobble, hy + Math.sin(a) * 0.76 * wobble, 0.06));
-  }
-  const ring = new THREE.CatmullRomCurve3(ringPts, true, "centripetal", 0.9);
+  // Rounded bubble slab with a soft tail tucked underneath.
+  const bubble = new THREE.Shape();
+  const w = 1.34,
+    h = 0.92,
+    r = 0.26;
+  const x = -w / 2,
+    y = -h / 2;
+  bubble.moveTo(x + r, y);
+  bubble.lineTo(x + w - r, y);
+  bubble.absarc(x + w - r, y + r, r, -Math.PI / 2, 0);
+  bubble.lineTo(x + w, y + h - r);
+  bubble.absarc(x + w - r, y + h - r, r, 0, Math.PI / 2);
+  bubble.lineTo(x + w * 0.44, y + h);
+  bubble.lineTo(x + w * 0.3, y + h - 0.26);
+  bubble.lineTo(x + r, y + h);
+  bubble.absarc(x + r, y + h - r, r, Math.PI / 2, Math.PI);
+  bubble.lineTo(x, y + r);
+  bubble.absarc(x + r, y + r, r, Math.PI, Math.PI * 1.5);
   add(
-    new THREE.TubeGeometry(ring, 120, 0.022, 10, true),
-    "Optical_Film",
-    "optical-lenses",
-    0,
-    0,
-    0,
-  );
-  // Hub: a plump amber heart.
-  const hubGeo = new THREE.SphereGeometry(0.26, 28, 20);
-  hubGeo.scale(1, 1, 0.55);
-  add(hubGeo, "Amber_Optical_Inlay", "optical-core", hx, hy, 0.06);
-  // Pebble agents on the ring, each fed by a curved tendril from the hub.
-  for (let i = 0; i < 6; i++) {
-    const a = (i / 6) * Math.PI * 2 + Math.PI / 6;
-    const kx = hx + Math.cos(a) * 1.06,
-      ky = hy + Math.sin(a) * 0.74;
-    const mid = new THREE.Vector3(
-      hx + Math.cos(a) * 0.62 + Math.sin(a) * 0.06,
-      hy + Math.sin(a) * 0.44 - Math.cos(a) * 0.04,
-      0.08,
-    );
-    const tendril = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(hx + Math.cos(a) * 0.2, hy + Math.sin(a) * 0.2, 0.06),
-      mid,
-      new THREE.Vector3(kx - Math.cos(a) * 0.07, ky - Math.sin(a) * 0.07, 0.07),
-    ]);
-    add(
-      new THREE.TubeGeometry(tendril, 28, 0.016, 8, false),
-      "Optical_Film_Edge",
-      "optical-core",
-      0,
-      0,
-      0,
-    );
-    add(
-      pebble(0.085, 0.5),
-      i % 2 ? "Champagne_Index" : "Subsurface_Optics",
-      "optical-core",
-      kx,
-      ky,
-      0.07,
-    );
-  }
-  // Cloud bubble: three merged soft lobes in one beveled silhouette.
-  const bx = hx + 1.02,
-    by = hy + 0.62;
-  const cloud = new THREE.Shape();
-  cloud.moveTo(-0.34, -0.1);
-  cloud.bezierCurveTo(-0.36, 0.06, -0.24, 0.16, -0.12, 0.14);
-  cloud.bezierCurveTo(-0.08, 0.26, 0.1, 0.28, 0.16, 0.16);
-  cloud.bezierCurveTo(0.3, 0.16, 0.38, 0.04, 0.32, -0.08);
-  cloud.bezierCurveTo(0.3, -0.18, 0.14, -0.2, 0.04, -0.17);
-  cloud.lineTo(0.02, -0.28);
-  cloud.lineTo(-0.1, -0.17);
-  cloud.bezierCurveTo(-0.22, -0.2, -0.33, -0.18, -0.34, -0.1);
-  add(relief(cloud, 0.05, 0.03), "Subsurface_Optics", "optical-lenses", bx, by, 0.09);
-  for (let i = 0; i < 3; i++) {
-    add(pebble(0.035, 0.5), "Amber_Optical_Inlay", "optical-core", bx - 0.13 + i * 0.13, by - 0.02, 0.12);
-  }
-  // One curved strand feeding the bubble from the nearest agent.
-  const strand = new THREE.CatmullRomCurve3([
-    new THREE.Vector3(hx + Math.cos(Math.PI / 3) * 1.06, hy + Math.sin(Math.PI / 3) * 0.74, 0.07),
-    new THREE.Vector3(bx - 0.32, by - 0.22, 0.1),
-    new THREE.Vector3(bx - 0.2, by - 0.06, 0.1),
-  ]);
-  add(
-    new THREE.TubeGeometry(strand, 24, 0.014, 8, false),
-    "Champagne_Index",
+    relief(bubble, 0.07, 0.04),
+    "Subsurface_Optics",
     "optical-core",
-    0,
-    0,
-    0,
+    C.x,
+    C.y + 0.1,
+    0.04,
   );
+  for (let i = 0; i < 3; i++) {
+    add(pebble(0.075, 0.55), "Amber_Optical_Inlay", "optical-lenses", C.x - 0.26 + i * 0.26, C.y + 0.16, 0.12);
+  }
   return meshes;
 }
 
 // ------------------------------------------------------------ registry ----
 const LABELS: Partial<Record<string, ThemeBuild["labels"]>> = {
   "R-001": {
-    lenses: { label: "图谱饰层", en: "ATLAS FILM" },
-    core: { label: "网络图谱", en: "NETWORK ATLAS" },
+    lenses: { label: "遗忘内核", en: "FORGETTING KERNEL" },
+    core: { label: "大脑剪影", en: "BRAIN FORM" },
   },
   "P-002": {
-    lenses: { label: "航标饰层", en: "MARKER FILM" },
-    core: { label: "旅行航标", en: "VOYAGE MARKER" },
+    lenses: { label: "钉孔嵌珠", en: "PIN INSET" },
+    core: { label: "定位钉", en: "MAP PIN" },
   },
   "P-004": {
-    lenses: { label: "镜头饰层", en: "LENS FILM" },
-    core: { label: "鲜果视界", en: "FRUIT LENS" },
+    lenses: { label: "梗与叶", en: "STEM & LEAF" },
+    core: { label: "苹果", en: "APPLE" },
   },
   "I-001": {
-    lenses: { label: "矩阵饰层", en: "MATRIX FILM" },
-    core: { label: "智能体矩阵", en: "AGENT MATRIX" },
+    lenses: { label: "输入中", en: "TYPING" },
+    core: { label: "对话气泡", en: "CHAT BUBBLE" },
   },
 };
 
