@@ -3,7 +3,7 @@ FILE R-001 / 遗忘核在信念动态系统中的作用模拟（研究生毕论�
 COLLECTIVE FORGETTING IN OPINION DYNAMICS
 
 角色：硕士毕业论文
-时期：2024.09 - 至今
+时期：2024.09 - 2026.06
 技术栈：DeGroot 模型 / 意见动力学 / Python / 谱分析
 访问范围：OPEN SOURCE
 

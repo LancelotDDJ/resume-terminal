@@ -22,7 +22,7 @@
       "timeline": [
         { "lane": "教育", "label": "北信科 · 物联网工程本科", "from": "2020.10", "to": "2024.06" },
         { "lane": "教育", "label": "阿德莱德 · 数据科学硕士", "from": "2024.09", "to": "至今" },
-        { "lane": "科研", "label": "遗忘核 · 研究生毕论", "from": "2024.09", "to": "至今" },
+        { "lane": "科研", "label": "遗忘核 · 研究生毕论", "from": "2024.09", "to": "2026.06" },
         { "lane": "实习", "label": "汉王科技 · AI 实习生", "from": "2026.05", "to": "2026.08" },
         { "lane": "项目", "label": "AI 智能聊天 App", "from": "2022.11", "to": "2023.05" },
         { "lane": "项目", "label": "物联网农场（毕设）", "from": "2024.01", "to": "2024.07" },
@@ -263,7 +263,7 @@
       "en": "COLLECTIVE FORGETTING IN OPINION DYNAMICS",
       "department": "硕士毕业论文",
       "category": "科研经历",
-      "date": "2024.09 - 至今",
+      "date": "2024.09 - 2026.06",
       "lead": "DeGroot 模型 / 意见动力学 / Python / 谱分析",
       "clearance": "OPEN SOURCE",
       "abstract": "论文《Modeling Collective Forgetting — Integrating a Forgetting Kernel into Opinion Dynamics Frameworks》：在经典 DeGroot 意见动力学模型基础上引入有限期指数遗忘核，系统仿真个体记忆衰减对群体共识的影响，发现中等遗忘强度可显著缩短共识时间，且该结论在多种网络结构下稳健。代码、Notebook 与全部报告图表开源。",
