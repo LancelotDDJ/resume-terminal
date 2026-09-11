@@ -344,7 +344,7 @@ function switchDetailRecord(navigation?: ArchiveNavigation) {
       : 0;
   if (prefs.reduced || (!laneDir && !rowDir)) {
     scene?.replayDecryption();
-    renderDetail();
+    renderDetail(true);
     return;
   }
   const outX = laneDir * -26,
@@ -365,7 +365,7 @@ function switchDetailRecord(navigation?: ArchiveNavigation) {
       // for good; cancel it to release the retained effect before swapping.
       out.cancel();
       scene?.replayDecryption();
-      renderDetail();
+      renderDetail(true);
       panel.style.opacity = "0";
       const inAnim = panel.animate(
         [
@@ -496,7 +496,7 @@ function toggleSaved() {
   audio.play("confirm");
   notify(saved.has(id) ? "档案已加入收藏" : "已取消收藏");
 }
-function renderDetail() {
+function renderDetail(instant = false) {
   tabTransition.cancel();
   const r = records[selected];
   $("#object-id").textContent = records[selected].id;
@@ -512,7 +512,9 @@ function renderDetail() {
   <div class="detail-footnote"><a href="${escapeHtml(r.source)}" target="_blank" rel="noopener">相关链接 ↗</a><span>${String(selected + 1).padStart(3, "0")} / ${String(records.length).padStart(3, "0")}</span></div>`;
   $("#detail-content").setAttribute("tabindex", "-1");
   $('[data-action="bookmark"]').setAttribute("aria-pressed", String(saved.has(r.id)));
-  documentDecryption.reset($("#detail-content"), prefs.reduced || scene.decryptionFrame.phase === "clear");
+  // Arrow-key flips render the text instantly (no second redaction cycle);
+  // the model's glass still unlocks in the background via replayDecryption.
+  documentDecryption.reset($("#detail-content"), prefs.reduced || instant || scene.decryptionFrame.phase === "clear");
   setTab(activeTab, false);
 }
 function overview() {
