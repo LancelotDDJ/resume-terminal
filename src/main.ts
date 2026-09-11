@@ -293,11 +293,13 @@ function setMode(next: Mode) {
   const detailUi = $("#detail-ui");
   clearTimeout(backReadyTimer);
   if (next === "detail") {
-    detailUi.classList.remove("back-ready");
-    backReadyTimer = setTimeout(
-      () => detailUi.classList.add("back-ready"),
-      prefs.reduced ? 0 : 1120,
-    );
+    if (previousMode !== "detail") {
+      detailUi.classList.remove("back-ready");
+      backReadyTimer = setTimeout(
+        () => detailUi.classList.add("back-ready"),
+        prefs.reduced ? 0 : 1120,
+      );
+    }
   } else {
     detailUi.classList.remove("back-ready");
   }
@@ -314,15 +316,64 @@ function setMode(next: Mode) {
   }
 }
 function select(index: number, navigation?: ArchiveNavigation) {
+  const wasDetail = mode === "detail";
   selected = (index + records.length) % records.length;
   columnMemory[fileLocation(selected).lane] = selected;
-  if (mode === "detail") setMode("archive");
   activeTab = "overview";
   scene?.select(selected, navigation);
   updateSelection(navigation);
   archiveTree.update(selected);
+  // Inside the reading view the arrows flip records in place instead of
+  // dropping back to the array — the panel slides with the direction and the
+  // decryption reveal replays for the new record.
+  if (wasDetail) switchDetailRecord(navigation);
   const columnMove = navigation && "axis" in navigation && navigation.axis === "lane";
   audio.play(columnMove ? "column" : "tick", columnMove ? navigation.direction * .45 : 0);
+}
+let detailSwitchAnim: Animation | null = null;
+function switchDetailRecord(navigation?: ArchiveNavigation) {
+  recordAccess();
+  const panel = $("#detail-content");
+  const laneDir =
+    navigation && "axis" in navigation && navigation.axis === "lane"
+      ? navigation.direction
+      : 0;
+  const rowDir =
+    navigation && "axis" in navigation && navigation.axis === "row"
+      ? navigation.direction
+      : 0;
+  if (prefs.reduced || (!laneDir && !rowDir)) {
+    renderDetail();
+    return;
+  }
+  const outX = laneDir * -26,
+    outY = rowDir * -20;
+  detailSwitchAnim?.cancel();
+  const out = panel.animate(
+    [
+      { opacity: 1, transform: "translate(0, 0)" },
+      { opacity: 0, transform: `translate(${outX}px, ${outY}px)` },
+    ],
+    { duration: 150, easing: "ease-in", fill: "forwards" },
+  );
+  detailSwitchAnim = out;
+  void out.finished
+    .then(() => {
+      if (detailSwitchAnim !== out) return;
+      renderDetail();
+      panel.animate(
+        [
+          { opacity: 0, transform: `translate(${-outX}px, ${-outY}px)` },
+          { opacity: 1, transform: "translate(0, 0)" },
+        ],
+        {
+          duration: 280,
+          easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+          fill: "backwards",
+        },
+      );
+    })
+    .catch(() => {});
 }
 function stepFile(direction: number) {
   const files = columnFiles(fileLocation(selected).lane);
