@@ -592,7 +592,7 @@ function buildDocPage(mat: MatFactory): THREE.Mesh[] {
   flap.quadraticCurveTo(0.02, -0.14, 0, 0);
   add(relief(flap, 0.05, 0.02), "Champagne_Index", "optical-core", C.x + 0.28, C.y + 0.56, 0.07);
   // Info mark: a dot and a capsule stem, both softly rounded.
-  add(pebble(0.055, 0.55), "Amber_Optical_Inlay", "optical-lenses", C.x, C.y + 0.24, 0.1);
+  add(pebble(0.055, 0.29), "Amber_Optical_Inlay", "optical-lenses", C.x, C.y + 0.24, 0.13);
   add(
     new THREE.CapsuleGeometry(0.05, 0.26, 6, 10),
     "Amber_Optical_Inlay",
@@ -679,7 +679,7 @@ function buildChip(mat: MatFactory): THREE.Mesh[] {
     "optical-core",
     C.x,
     C.y,
-    0.075,
+    0.06,
   );
   // Soft pins: four per side, capsules reaching outward.
   for (let side = 0; side < 4; side++) {
@@ -700,7 +700,7 @@ function buildChip(mat: MatFactory): THREE.Mesh[] {
       );
     }
   }
-  add(pebble(0.15, 0.35), "Amber_Optical_Inlay", "optical-lenses", C.x, C.y, 0.095);
+  add(pebble(0.12, 0.3), "Amber_Optical_Inlay", "optical-lenses", C.x, C.y, 0.105);
   return meshes;
 }
 
