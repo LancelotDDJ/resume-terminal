@@ -343,6 +343,7 @@ function switchDetailRecord(navigation?: ArchiveNavigation) {
       ? navigation.direction
       : 0;
   if (prefs.reduced || (!laneDir && !rowDir)) {
+    scene?.replayDecryption();
     renderDetail();
     return;
   }
@@ -360,8 +361,13 @@ function switchDetailRecord(navigation?: ArchiveNavigation) {
   void out.finished
     .then(() => {
       if (detailSwitchAnim !== out) return;
+      // The forwards fill would otherwise pin opacity at 0 on this element
+      // for good; cancel it to release the retained effect before swapping.
+      out.cancel();
+      scene?.replayDecryption();
       renderDetail();
-      panel.animate(
+      panel.style.opacity = "0";
+      const inAnim = panel.animate(
         [
           { opacity: 0, transform: `translate(${-outX}px, ${-outY}px)` },
           { opacity: 1, transform: "translate(0, 0)" },
@@ -372,6 +378,15 @@ function switchDetailRecord(navigation?: ArchiveNavigation) {
           fill: "backwards",
         },
       );
+      detailSwitchAnim = inAnim;
+      void inAnim.finished
+        .then(() => {
+          if (detailSwitchAnim === inAnim) {
+            panel.style.opacity = "";
+            detailSwitchAnim = null;
+          }
+        })
+        .catch(() => {});
     })
     .catch(() => {});
 }

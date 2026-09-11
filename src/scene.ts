@@ -1312,6 +1312,9 @@ export class ArchiveScene {
   }
   get decryptionFrame() { return this.decryption.frame; }
   finishDecryption() { this.decryption.finish(); }
+  // Restart the glass reveal for a record swapped in without a mode change
+  // (arrow-key flips inside the reading view).
+  replayDecryption() { this.decryption.enter(false); }
   get detailVisibility() {
     return ease((this.detail - 0.25) / 0.55);
   }
