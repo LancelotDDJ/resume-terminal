@@ -46,7 +46,11 @@ execFileSync(process.execPath, ["scripts/export-records.mjs"], {
 execFileSync(process.execPath, ["node_modules/typescript/bin/tsc", "--noEmit"], {
   stdio: "inherit",
 });
-await build({ logLevel: "warn" });
+// Honour the --base= flag (GitHub Pages passes the deployment subpath); the
+// programmatic build() ignores CLI args, so read it explicitly. Without this
+// a subpath deploy references /assets from the domain root and 404s.
+const baseArg = process.argv.slice(2).find((arg) => arg.startsWith("--base="));
+await build({ base: baseArg ? baseArg.slice(7) : "/", logLevel: "warn" });
 const seconds = ((Date.now() - startedAt) / 1000).toFixed(2);
 console.log(
   `[build] dist/ refreshed from current sources — ${countFiles(dist)} files in ${seconds}s`,
