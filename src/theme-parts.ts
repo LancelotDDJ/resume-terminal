@@ -407,22 +407,26 @@ function buildFruit(mat: MatFactory): ThemeBuild["meshes"] {
   const ax = C.x,
     ay = C.y - 0.1;
   add(appleForm(0.46, 0.34), "Amber_Optical_Inlay", "optical-core", ax, ay, 0.02);
+  // The stem grows out of the apple's top edge (its silhouette tops out near
+  // ay + 0.42) and bends gently — never floating free of the fruit.
   const stem = new THREE.CatmullRomCurve3([
-    new THREE.Vector3(ax, ay + 0.55, 0.08),
-    new THREE.Vector3(ax + 0.05, ay + 0.66, 0.09),
-    new THREE.Vector3(ax + 0.13, ay + 0.68, 0.09),
+    new THREE.Vector3(ax + 0.01, ay + 0.4, 0.08),
+    new THREE.Vector3(ax + 0.05, ay + 0.5, 0.09),
+    new THREE.Vector3(ax + 0.12, ay + 0.53, 0.09),
   ]);
   add(
-    new THREE.TubeGeometry(stem, 18, 0.026, 8, false),
+    new THREE.TubeGeometry(stem, 18, 0.028, 8, false),
     "Champagne_Index",
     "optical-lenses",
     0,
     0,
     0,
   );
-  const leafGeo = new THREE.SphereGeometry(0.13, 20, 14);
-  leafGeo.scale(1, 0.42, 0.3);
-  add(leafGeo, "Champagne_Index", "optical-lenses", ax + 0.2, ay + 0.63, 0.09);
+  // A proper leaf: plump almond shape leaning off the stem's tip, resting on
+  // the apple's shoulder so the three parts read as one fruit.
+  const leafGeo = new THREE.SphereGeometry(0.16, 20, 14);
+  leafGeo.scale(1, 0.42, 0.28);
+  add(leafGeo, "Champagne_Index", "optical-lenses", ax + 0.24, ay + 0.5, 0.09, -0.55);
   return meshes;
 }
 
@@ -796,7 +800,7 @@ function buildMagnifier(mat: MatFactory): THREE.Mesh[] {
 // ---------------------------------------------------------------- P-005 ----
 // IoT farm: a seedling — two soft leaves on a curved stem rising from a soil
 // mound. Agriculture in one rounded read.
-function buildSeedling(mat: MatFactory): THREE.Mesh[] {
+function buildSeedling(mat: MatFactory): ThemeBuild["meshes"] {
   const meshes: THREE.Mesh[] = [];
   const add = (
     geometry: THREE.BufferGeometry,
@@ -812,32 +816,34 @@ function buildSeedling(mat: MatFactory): THREE.Mesh[] {
     mesh.rotation.z = rz;
     meshes.push(mesh);
   };
-  const moundGeo = new THREE.SphereGeometry(0.52, 28, 18);
-  moundGeo.scale(1, 0.45, 0.14);
-  add(moundGeo, "Champagne_Index", "optical-core", C.x, C.y - 0.56, 0.07);
+  // A modest soil mound — a base, not the main actor.
+  const moundGeo = new THREE.SphereGeometry(0.3, 28, 18);
+  moundGeo.scale(1, 0.5, 0.14);
+  add(moundGeo, "Champagne_Index", "optical-core", C.x, C.y - 0.5, 0.06);
+  // A taller stem carrying the composition's weight upward.
   const stem = new THREE.CatmullRomCurve3([
-    new THREE.Vector3(C.x, C.y - 0.5, 0.06),
-    new THREE.Vector3(C.x - 0.04, C.y - 0.1, 0.08),
-    new THREE.Vector3(C.x + 0.02, C.y + 0.3, 0.08),
+    new THREE.Vector3(C.x, C.y - 0.48, 0.07),
+    new THREE.Vector3(C.x - 0.04, C.y - 0.05, 0.08),
+    new THREE.Vector3(C.x + 0.02, C.y + 0.42, 0.08),
   ]);
   add(
-    new THREE.TubeGeometry(stem, 24, 0.038, 10, false),
+    new THREE.TubeGeometry(stem, 26, 0.042, 10, false),
     "Amber_Optical_Inlay",
     "optical-core",
     0,
     0,
     0,
   );
-  // Two plump leaves opening at the stem's tip.
+  // Two confident plump leaves opening at the tip — the seedling's crown.
   for (const side of [-1, 1]) {
-    const leafGeo = new THREE.SphereGeometry(0.19, 20, 14);
-    leafGeo.scale(1, 0.4, 0.32);
+    const leafGeo = new THREE.SphereGeometry(0.25, 20, 14);
+    leafGeo.scale(1, 0.4, 0.25);
     add(
       leafGeo,
       "Amber_Optical_Inlay",
       "optical-lenses",
-      C.x + side * 0.22,
-      C.y + 0.42,
+      C.x + side * 0.25,
+      C.y + 0.52,
       0.08,
       side * 0.55,
     );
@@ -848,7 +854,7 @@ function buildSeedling(mat: MatFactory): THREE.Mesh[] {
 // ---------------------------------------------------------------- P-006 ----
 // AI chat app: a friendly bot head — plump rounded face, two amber eyes and a
 // curved antenna with a droplet tip.
-function buildBot(mat: MatFactory): THREE.Mesh[] {
+function buildBot(mat: MatFactory): ThemeBuild["meshes"] {
   const meshes: THREE.Mesh[] = [];
   const add = (
     geometry: THREE.BufferGeometry,
@@ -870,9 +876,35 @@ function buildBot(mat: MatFactory): THREE.Mesh[] {
     C.y - 0.06,
     0.075,
   );
+  // Soft capsule ears hugging the head's sides.
   for (const side of [-1, 1]) {
-    add(pebble(0.095, 0.5), "Amber_Optical_Inlay", "optical-lenses", C.x + side * 0.21, C.y + 0.02, 0.1);
+    add(
+      new THREE.CapsuleGeometry(0.055, 0.14, 4, 8),
+      "Subsurface_Optics",
+      "optical-core",
+      C.x + side * 0.53,
+      C.y - 0.08,
+      0.075,
+    );
   }
+  // Big friendly eyes: amber discs reading through colour contrast.
+  for (const side of [-1, 1]) {
+    add(disc(0.115, 0.028), "Amber_Optical_Inlay", "optical-lenses", C.x + side * 0.19, C.y + 0.04, 0.132);
+  }
+  // A gentle smile arc under the eyes.
+  const smile = new THREE.CatmullRomCurve3([
+    new THREE.Vector3(C.x - 0.15, C.y - 0.12, 0.12),
+    new THREE.Vector3(C.x, C.y - 0.19, 0.12),
+    new THREE.Vector3(C.x + 0.15, C.y - 0.12, 0.12),
+  ]);
+  add(
+    new THREE.TubeGeometry(smile, 20, 0.022, 8, false),
+    "Amber_Optical_Inlay",
+    "optical-lenses",
+    0,
+    0,
+    0,
+  );
   const antenna = new THREE.CatmullRomCurve3([
     new THREE.Vector3(C.x, C.y + 0.36, 0.08),
     new THREE.Vector3(C.x + 0.04, C.y + 0.5, 0.09),
@@ -893,7 +925,27 @@ function buildBot(mat: MatFactory): THREE.Mesh[] {
 // ---------------------------------------------------------------- R-002 ----
 // Blood-cell study: the biconcave red cell from the textbooks, lathed with a
 // dimpled centre, plus one smaller companion cell.
-function buildBloodCell(mat: MatFactory): THREE.Mesh[] {
+function bloodCellGeo(radius: number, dish: number): THREE.LatheGeometry {
+  // Biconcave profile with a pronounced central dimple so the cell reads at a
+  // glance — thin dished centre, plump rim.
+  const r = radius;
+  const pts = [
+    new THREE.Vector2(0, dish),
+    new THREE.Vector2(r * 0.3, dish * 0.9),
+    new THREE.Vector2(r * 0.55, dish + 0.02),
+    new THREE.Vector2(r * 0.82, dish + 0.075),
+    new THREE.Vector2(r, dish + 0.11),
+    new THREE.Vector2(r * 1.02, dish + 0.14),
+    new THREE.Vector2(r * 0.9, dish + 0.17),
+    new THREE.Vector2(r * 0.6, dish + 0.2),
+    new THREE.Vector2(r * 0.3, dish + 0.21),
+    new THREE.Vector2(0, dish + 0.18),
+  ];
+  const g = new THREE.LatheGeometry(pts, 36);
+  g.rotateX(Math.PI / 2);
+  return g;
+}
+function buildBloodCell(mat: MatFactory): ThemeBuild["meshes"] {
   const meshes: THREE.Mesh[] = [];
   const add = (
     geometry: THREE.BufferGeometry,
@@ -909,25 +961,16 @@ function buildBloodCell(mat: MatFactory): THREE.Mesh[] {
     mesh.rotation.z = rz;
     meshes.push(mesh);
   };
-  // Biconcave profile: thin dimpled centre rising to a plump rim.
-  const pts = [
-    new THREE.Vector2(0, 0.03),
-    new THREE.Vector2(0.14, 0.024),
-    new THREE.Vector2(0.28, 0.04),
-    new THREE.Vector2(0.42, 0.1),
-    new THREE.Vector2(0.46, 0.16),
-    new THREE.Vector2(0.42, 0.21),
-    new THREE.Vector2(0.28, 0.25),
-    new THREE.Vector2(0.14, 0.26),
-    new THREE.Vector2(0, 0.22),
-  ];
-  const cellGeo = new THREE.LatheGeometry(pts, 36);
-  cellGeo.rotateX(Math.PI / 2);
-  cellGeo.scale(1.35, 1.35, 0.4);
-  add(cellGeo, "Amber_Optical_Inlay", "optical-core", C.x, C.y, 0.04, 0.2);
-  const smallGeo = cellGeo.clone();
-  smallGeo.scale(0.62, 0.62, 0.4);
-  add(smallGeo, "Champagne_Index", "optical-lenses", C.x + 0.72, C.y + 0.42, 0.07, -0.3);
+  // A small cluster of three dished cells, like a microscope field.
+  const big = bloodCellGeo(0.4, 0.012);
+  big.scale(1, 1, 0.5);
+  add(big, "Amber_Optical_Inlay", "optical-core", C.x - 0.22, C.y - 0.12, 0.035, 0.25);
+  const mid = bloodCellGeo(0.28, 0.012);
+  mid.scale(1, 1, 0.5);
+  add(mid, "Champagne_Index", "optical-core", C.x + 0.42, C.y + 0.3, 0.03, -0.35);
+  const small = bloodCellGeo(0.2, 0.01);
+  small.scale(1, 1, 0.4);
+  add(small, "Amber_Optical_Inlay", "optical-lenses", C.x + 0.55, C.y - 0.32, 0.05, 0.5);
   return meshes;
 }
 
