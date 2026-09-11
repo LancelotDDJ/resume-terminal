@@ -248,7 +248,7 @@ function appleForm(radius: number, height: number): THREE.LatheGeometry {
   ];
   const g = new THREE.LatheGeometry(pts, 32);
   g.rotateX(Math.PI / 2);
-  g.scale(1, 1, 0.85);
+  g.scale(1, 1, 0.6);
   return g;
 }
 
@@ -320,7 +320,7 @@ function buildNetwork(mat: MatFactory): THREE.Mesh[] {
     add(pebble(0.05, 0.5), "Subsurface_Optics", "optical-core", x, y, 0.07);
   });
   // The kernel: a smooth amber droplet with a soft halo at the mesh's centre.
-  add(droplet(0.105, 0.26), "Amber_Optical_Inlay", "optical-core", C.x, C.y, 0.03);
+  add(droplet(0.105, 0.19), "Amber_Optical_Inlay", "optical-core", C.x, C.y, 0.03);
   add(
     new THREE.TorusGeometry(0.19, 0.016, 12, 48),
     "Amber_Optical_Inlay",
@@ -356,22 +356,22 @@ function buildVoyage(mat: MatFactory): ThemeBuild["meshes"] {
     sy = C.y - 0.08;
   // Body: one big soft-edged slab.
   add(
-    new RoundedBoxGeometry(1.2, 0.86, 0.3, 5, 0.14),
+    new RoundedBoxGeometry(1.2, 0.86, 0.2, 5, 0.14),
     "Amber_Optical_Inlay",
     "optical-core",
     sx,
     sy,
-    0.05,
+    0.075,
   );
   // Two strap bands hugging the body.
   for (const offset of [-0.32, 0.32]) {
     add(
-      new RoundedBoxGeometry(0.1, 0.9, 0.32, 4, 0.045),
+      new RoundedBoxGeometry(0.1, 0.9, 0.2, 4, 0.045),
       "Champagne_Index",
       "optical-lenses",
       sx + offset,
       sy,
-      0.06,
+      0.075,
     );
   }
   // Soft arc handle rising from the top edge.
@@ -406,7 +406,7 @@ function buildFruit(mat: MatFactory): ThemeBuild["meshes"] {
 
   const ax = C.x,
     ay = C.y - 0.1;
-  add(appleForm(0.46, 0.6), "Amber_Optical_Inlay", "optical-core", ax, ay, 0.03);
+  add(appleForm(0.46, 0.34), "Amber_Optical_Inlay", "optical-core", ax, ay, 0.03);
   const stem = new THREE.CatmullRomCurve3([
     new THREE.Vector3(ax, ay + 0.55, 0.08),
     new THREE.Vector3(ax + 0.05, ay + 0.66, 0.09),
@@ -451,8 +451,8 @@ function buildAgent(mat: MatFactory): ThemeBuild["meshes"] {
     hy = C.y;
   // Hub: a plump amber heart.
   const hubGeo = new THREE.SphereGeometry(0.27, 28, 20);
-  hubGeo.scale(1, 1, 0.55);
-  add(hubGeo, "Amber_Optical_Inlay", "optical-core", hx, hy, 0.06);
+  hubGeo.scale(1, 1, 0.42);
+  add(hubGeo, "Amber_Optical_Inlay", "optical-core", hx, hy, 0.09);
 
   const kids: [number, number][] = [];
   for (let i = 0; i < 6; i++) {
@@ -526,8 +526,8 @@ function buildPersona(mat: MatFactory): THREE.Mesh[] {
   bust.closePath();
   add(relief(bust, 0.09, 0.045), "Amber_Optical_Inlay", "optical-core", C.x, C.y - 0.22, 0.04);
   const headGeo = new THREE.SphereGeometry(0.27, 26, 18);
-  headGeo.scale(1, 1, 0.68);
-  add(headGeo, "Amber_Optical_Inlay", "optical-core", C.x, C.y + 0.36, 0.07);
+  headGeo.scale(1, 1, 0.42);
+  add(headGeo, "Amber_Optical_Inlay", "optical-core", C.x, C.y + 0.36, 0.09);
   add(
     new THREE.TorusGeometry(0.36, 0.02, 12, 48),
     "Champagne_Index",
@@ -624,10 +624,10 @@ function buildMortarboard(mat: MatFactory): THREE.Mesh[] {
     meshes.push(mesh);
   };
   const domeGeo = new THREE.SphereGeometry(0.3, 26, 18);
-  domeGeo.scale(1, 1, 0.55);
-  add(domeGeo, "Champagne_Index", "optical-core", C.x, C.y - 0.04, 0.05);
+  domeGeo.scale(1, 1, 0.4);
+  add(domeGeo, "Champagne_Index", "optical-core", C.x, C.y - 0.04, 0.09);
   add(
-    new RoundedBoxGeometry(1.16, 0.15, 0.78, 5, 0.06),
+    new RoundedBoxGeometry(1.16, 0.78, 0.12, 5, 0.06),
     "Amber_Optical_Inlay",
     "optical-core",
     C.x,
@@ -674,12 +674,12 @@ function buildChip(mat: MatFactory): THREE.Mesh[] {
     meshes.push(mesh);
   };
   add(
-    new RoundedBoxGeometry(0.92, 0.92, 0.24, 5, 0.1),
+    new RoundedBoxGeometry(0.92, 0.92, 0.18, 5, 0.1),
     "Subsurface_Optics",
     "optical-core",
     C.x,
     C.y,
-    0.05,
+    0.07,
   );
   // Soft pins: four per side, capsules reaching outward.
   for (let side = 0; side < 4; side++) {
@@ -700,7 +700,7 @@ function buildChip(mat: MatFactory): THREE.Mesh[] {
       );
     }
   }
-  add(pebble(0.15, 0.55), "Amber_Optical_Inlay", "optical-lenses", C.x, C.y, 0.18);
+  add(pebble(0.15, 0.55), "Amber_Optical_Inlay", "optical-lenses", C.x, C.y, 0.12);
   return meshes;
 }
 
@@ -813,8 +813,8 @@ function buildSeedling(mat: MatFactory): THREE.Mesh[] {
     meshes.push(mesh);
   };
   const moundGeo = new THREE.SphereGeometry(0.52, 28, 18);
-  moundGeo.scale(1, 0.45, 0.5);
-  add(moundGeo, "Champagne_Index", "optical-core", C.x, C.y - 0.56, 0.04);
+  moundGeo.scale(1, 0.45, 0.18);
+  add(moundGeo, "Champagne_Index", "optical-core", C.x, C.y - 0.56, 0.07);
   const stem = new THREE.CatmullRomCurve3([
     new THREE.Vector3(C.x, C.y - 0.5, 0.06),
     new THREE.Vector3(C.x - 0.04, C.y - 0.1, 0.08),
@@ -863,15 +863,15 @@ function buildBot(mat: MatFactory): THREE.Mesh[] {
     meshes.push(mesh);
   };
   add(
-    new RoundedBoxGeometry(0.98, 0.84, 0.3, 6, 0.18),
+    new RoundedBoxGeometry(0.98, 0.84, 0.2, 6, 0.18),
     "Subsurface_Optics",
     "optical-core",
     C.x,
     C.y - 0.06,
-    0.05,
+    0.075,
   );
   for (const side of [-1, 1]) {
-    add(pebble(0.095, 0.5), "Amber_Optical_Inlay", "optical-lenses", C.x + side * 0.21, C.y + 0.02, 0.2);
+    add(pebble(0.095, 0.5), "Amber_Optical_Inlay", "optical-lenses", C.x + side * 0.21, C.y + 0.02, 0.16);
   }
   const antenna = new THREE.CatmullRomCurve3([
     new THREE.Vector3(C.x, C.y + 0.36, 0.08),
@@ -923,7 +923,7 @@ function buildBloodCell(mat: MatFactory): THREE.Mesh[] {
   ];
   const cellGeo = new THREE.LatheGeometry(pts, 36);
   cellGeo.rotateX(Math.PI / 2);
-  cellGeo.scale(1.35, 1.35, 1);
+  cellGeo.scale(1.35, 1.35, 0.7);
   add(cellGeo, "Amber_Optical_Inlay", "optical-core", C.x, C.y, 0.04, 0.2);
   const smallGeo = cellGeo.clone();
   smallGeo.scale(0.62, 0.62, 0.7);

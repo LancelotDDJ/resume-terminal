@@ -15,6 +15,7 @@ const checks = [
   ["assembly", ["scripts/check-assembly.mjs"]],
   ["assets", ["scripts/check-assets.mjs"]],
   ["shell", ["scripts/check-shell.mjs"]],
+  ["themes", ["scripts/check-themes.mjs"]],
 ];
 
 const failed = [];
