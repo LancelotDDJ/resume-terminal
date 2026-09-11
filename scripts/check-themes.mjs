@@ -10,8 +10,8 @@ import assert from "node:assert/strict";
 import * as THREE from "three";
 import { buildThemeParts } from "../src/theme-parts.ts";
 
-const COVER_OUTER_Z = 0.25; // transparent cover's outer surface
-const COVER_WARN_Z = 0.23; // keep a small margin below the surface
+const COVER_OUTER_Z = 0.15; // original optical-core ceiling — the cover recess depth
+const COVER_WARN_Z = 0.14; // warn near the recess ceiling
 const BACK_MIN_Z = -0.03; // original optical-core floor — nothing sinks into the substrate
 
 const RECORD_IDS = [
