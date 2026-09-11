@@ -22,6 +22,7 @@ import {
   fileLocation,
 } from "./data";
 import { renderTimeline } from "./gantt";
+import { buildArchiveTree } from "./archive-tree";
 import { TerminalAudio } from "./audio";
 import { audioSettingsMarkup } from "./audio-settings";
 
@@ -57,6 +58,7 @@ $("#stage").innerHTML = `
     <div class="archive-navigation"><button data-action="prev" aria-label="上一个档案">↑</button><div id="file-ticks" class="file-ticks"></div><button data-action="next" aria-label="下一个档案">↓</button></div>
     <div class="column-navigation"><button data-action="column-prev" aria-label="上一列">←</button><div><span id="column-number">COLUMN <span id="column-index">01</span> / 06</span><strong id="column-name">个人简介</strong></div><button data-action="column-next" aria-label="下一列">→</button></div>
     <div class="archive-hint"><kbd>←</kbd> <kbd>→</kbd> 切换分类 <span>／</span> <kbd>↑</kbd> <kbd>↓</kbd> 前后档案 <span>／</span> <kbd>ENTER</kbd> 读取</div>
+    <nav id="archive-tree"></nav>
   </section>
   <section id="detail-ui" class="detail-ui" aria-label="档案内容" hidden>
     <button class="back-button" data-action="back">← <span>ARCHIVE OVERVIEW</span><small>ESC</small></button>
@@ -74,6 +76,11 @@ $("#boot-background").insertAdjacentHTML(
   '<div class="boot-white"></div>',
 );
 const bootSequence = new BootSequence($("#stage"));
+
+const archiveTree = buildArchiveTree($("#archive-tree"), (index) => {
+  select(index);
+  openFile();
+});
 
 type Mode = "boot" | "archive" | "detail";
 let mode: Mode = "boot",
@@ -299,6 +306,7 @@ function select(index: number, navigation?: ArchiveNavigation) {
   activeTab = "overview";
   scene?.select(selected, navigation);
   updateSelection(navigation);
+  archiveTree.update(selected);
   const columnMove = navigation && "axis" in navigation && navigation.axis === "lane";
   audio.play(columnMove ? "column" : "tick", columnMove ? navigation.direction * .45 : 0);
 }

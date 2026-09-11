@@ -2202,3 +2202,191 @@ button {
 [data-mode="detail"] .boot {
   visibility: hidden;
 }
+
+/* ------------------------------------------------------------------ *
+ * Archive tree — retro file-explorer navigator (upper-left panel).
+ * Square markers, hairline connectors, accordion categories.
+ * ------------------------------------------------------------------ */
+.archive-tree {
+  position: absolute;
+  left: 225px;
+  top: 242px;
+  width: 380px;
+  max-height: 620px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(241, 239, 231, 0.86);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(120, 119, 110, 0.35);
+  box-shadow: 0 10px 40px rgba(60, 55, 42, 0.12);
+  font-size: 12px;
+  color: #3c3a33;
+  z-index: 6;
+  user-select: none;
+}
+.tree-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 13px;
+  border-bottom: 1px solid rgba(120, 119, 110, 0.25);
+}
+.tree-head > span {
+  font-size: 9px;
+  letter-spacing: 1.4px;
+  color: #78776e;
+}
+.tree-actions {
+  display: flex;
+  gap: 6px;
+}
+.tree-actions button {
+  font-size: 10px;
+  padding: 3px 8px;
+  border: 1px solid rgba(120, 119, 110, 0.45);
+  background: transparent;
+  color: #55524a;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+.tree-actions button:hover {
+  background: #e4d5c1;
+  color: #24261f;
+}
+.tree-scroll {
+  overflow-y: auto;
+  padding: 8px 0 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #bbb4a6 transparent;
+}
+.tree-root-label {
+  padding: 2px 16px 8px;
+  font-family: Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  color: #78776e;
+}
+.tree-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+  height: 26px;
+  padding: 0 12px 0 0;
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.15s;
+}
+.tree-row:hover {
+  background: #e4d5c1;
+}
+/* Explorer connectors: a vertical rail per depth plus a short tick. */
+.tree-row::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--depth) * 18px + 16px);
+  top: 0;
+  height: 100%;
+  border-left: 1px solid #cfc9ba;
+}
+.tree-row::after {
+  content: "";
+  position: absolute;
+  left: calc(var(--depth) * 18px + 16px);
+  top: 50%;
+  width: 11px;
+  border-top: 1px solid #cfc9ba;
+}
+.tree-row.last::before {
+  height: 50%;
+}
+.tree-row .tree-marker,
+.tree-row .tree-leaf-marker {
+  flex: 0 0 auto;
+  margin-left: calc(var(--depth) * 18px + 31px);
+}
+.tree-marker {
+  width: 13px;
+  height: 13px;
+  border: 1px solid #8a877c;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  line-height: 1;
+  font-style: normal;
+  color: #55524a;
+  background: rgba(255, 255, 255, 0.35);
+}
+.tree-leaf-marker {
+  width: 8px;
+  height: 8px;
+  border: 1px solid #a8a294;
+  background: transparent;
+}
+.tree-cat-name {
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+.tree-count {
+  margin-left: auto;
+  font-family: Consolas, monospace;
+  font-size: 10px;
+  color: #a39c8d;
+}
+.tree-id {
+  font-family: Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: #78776e;
+  min-width: 46px;
+}
+.tree-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #4a473e;
+}
+.tree-children {
+  overflow: hidden;
+  transition:
+    max-height 0.28s ease,
+    opacity 0.22s ease;
+  opacity: 1;
+}
+.tree-children.closed {
+  max-height: 0 !important;
+  opacity: 0;
+}
+.tree-row.current {
+  background: rgba(36, 38, 31, 0.09);
+}
+.tree-row.current::after {
+  border-top-color: #8a877c;
+}
+.tree-row.current .tree-leaf-marker {
+  background: #24261f;
+  border-color: #24261f;
+}
+.tree-row.current .tree-id {
+  color: #24261f;
+  font-weight: 700;
+}
+.tree-row.current .tree-name {
+  color: #24261f;
+  font-weight: 600;
+}
+.tree-row:focus-visible {
+  outline: 1px dashed #8a877c;
+  outline-offset: -1px;
+}
