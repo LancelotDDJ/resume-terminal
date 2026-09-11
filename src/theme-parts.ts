@@ -822,7 +822,7 @@ function buildSeedling(mat: MatFactory): ThemeBuild["meshes"] {
   add(moundGeo, "Champagne_Index", "optical-core", C.x, C.y - 0.5, 0.06);
   // A taller stem carrying the composition's weight upward.
   const stem = new THREE.CatmullRomCurve3([
-    new THREE.Vector3(C.x, C.y - 0.48, 0.07),
+    new THREE.Vector3(C.x, C.y - 0.36, 0.07),
     new THREE.Vector3(C.x - 0.04, C.y - 0.05, 0.08),
     new THREE.Vector3(C.x + 0.02, C.y + 0.42, 0.08),
   ]);
