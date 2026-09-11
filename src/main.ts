@@ -113,6 +113,7 @@ if (reviewParams.get("review") === "1") {
   });
 }
 let toastTimer: ReturnType<typeof setTimeout>;
+let backReadyTimer: ReturnType<typeof setTimeout>;
 let previousFocus: HTMLElement | null = null;
 const detailTransition = new SurfaceTransition($("#detail-ui"), undefined, 180, 180);
 const tabTransition = new ContentTransition();
@@ -287,6 +288,19 @@ function setMode(next: Mode) {
     if (!modal && next === "archive") $(".read-file").focus({ preventScroll: true });
   }
   $("#detail-ui").inert = next !== "detail" || Boolean(modal);
+  // The back button materialises only once the archive chrome has fully
+  // dissolved (0.3s delay + 0.8s fade), continuing the handoff seamlessly.
+  const detailUi = $("#detail-ui");
+  clearTimeout(backReadyTimer);
+  if (next === "detail") {
+    detailUi.classList.remove("back-ready");
+    backReadyTimer = setTimeout(
+      () => detailUi.classList.add("back-ready"),
+      prefs.reduced ? 0 : 1120,
+    );
+  } else {
+    detailUi.classList.remove("back-ready");
+  }
   scene?.setMode(next === "boot" ? "hidden" : next);
   if (next !== "boot") {
     bootSequence.reset();
