@@ -48,9 +48,13 @@ execFileSync(process.execPath, ["node_modules/typescript/bin/tsc", "--noEmit"], 
 });
 // Honour the --base= flag (GitHub Pages passes the deployment subpath); the
 // programmatic build() ignores CLI args, so read it explicitly. Without this
-// a subpath deploy references /assets from the domain root and 404s.
+// a subpath deploy references /assets from the domain root and 404s. Actions
+// passes the base WITHOUT a trailing slash, which would concatenate into
+// "...repoassets/..." — always normalise it to end with "/".
 const baseArg = process.argv.slice(2).find((arg) => arg.startsWith("--base="));
-await build({ base: baseArg ? baseArg.slice(7) : "/", logLevel: "warn" });
+let base = baseArg ? baseArg.slice(7) : "/";
+if (base && !base.endsWith("/")) base += "/";
+await build({ base, logLevel: "warn" });
 const seconds = ((Date.now() - startedAt) / 1000).toFixed(2);
 console.log(
   `[build] dist/ refreshed from current sources — ${countFiles(dist)} files in ${seconds}s`,
