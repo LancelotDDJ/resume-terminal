@@ -809,6 +809,20 @@ button {
   position: absolute;
   left: 60px;
   bottom: 235px;
+  /* Same dissolve-synced appearance as the back button: the tree panel
+     occupies this corner until the archive chrome finishes fading, so the
+     caption must wait to avoid overlapping it. */
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
+}
+.detail-ui.back-ready .object-caption {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
 }
 .object-caption > span {
   font-size: 37px;
