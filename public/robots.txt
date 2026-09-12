@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://ddj-house-of-everything.fun/sitemap.xml
